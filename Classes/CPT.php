@@ -14,13 +14,7 @@ class CPT
             'query_var'          => false,
             'label'		=>__('Ninja Mortgage Calculator', 'ninja_mortgage')
 		);
+
 		register_post_type( self::$CPTName, $cptArgs );
 	}
-	
 }
-
-
-
-
-
- 
