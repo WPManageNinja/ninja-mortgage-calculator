@@ -1,0 +1,29 @@
+{
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "dependencies": {
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "clipboard": "^2.0.1",
+        "cross-env": "^5.0.5",
+        "laravel-mix": "^2.1.11",
+        "less": "^3.0.4",
+        "less-loader": "^4.0.5",
+        "lodash": "^4.17.10",
+        "moment": "^2.19.3",
+        "normalize.css": "^7.0.0",
+        "scss-loader": "0.0.1",
+        "vee-validate": "^2.1.0-beta.6",
+        "vue": "^2.5.10",
+        "vue-router": "^2.8.1",
+        "vuedraggable": "^2.16.0"
+    },
+    "devDependencies": {
+        "element-ui": "^2.4.3"
+    }
+}
