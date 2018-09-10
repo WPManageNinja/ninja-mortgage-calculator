@@ -20,9 +20,9 @@
 </template>
 
 <script>
-    import MortgageCalculator from './_MortgageCalculator.vue'
-    import MortgageRefinance from './_MortgageRefinance.vue'
-    import MortgagePayment from './_MortgagePayment.vue'
+    import MortgageCalculator from './core/_MortgageCalculator.vue'
+    import MortgageRefinance from './core/_MortgageRefinance.vue'
+    import MortgagePayment from './core/_MortgagePayment.vue'
 
     export default {
         name: 'user_calculator',

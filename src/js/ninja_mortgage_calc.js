@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ElementUI from 'element-ui';
 import VeeValidate from 'vee-validate'
 
 import routes from './router.js';

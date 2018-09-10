@@ -51,6 +51,7 @@ class NINJAMortgageCalculator
 		add_action('ninja_mortgage_added_new_table', array('NinjaMortgage\Classes\MortgageCalculatorHandler','populateDemoData') );
 		add_action('ninija_mortgage_table_config_updated', array('NinjaMortgage\Classes\MortgageCalculatorHandler','deleteCache') );
 	
+		wp_enqueue_style('mortgage_icon_css', NINJA_MORTGAGE_PLUGIN_DIR_URL.'/public/css/admin.css');
 	}
 
 

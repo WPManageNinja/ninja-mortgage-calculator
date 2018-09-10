@@ -2,11 +2,11 @@ export default [
 	{ 
 		path: '/', 
 		name: 'mortgage_calc_home', 
-		component: require('./components/AllTables') 
+		component: require('./views/AllTables.vue') 
 	},
 	{
 		path: '/edit_table/:table_id',
 		name: 'edit_table',
-		component: require('./components/EditTable.vue')
+		component: require('./views/EditTable.vue')
 	}
 ];
