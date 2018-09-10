@@ -16,9 +16,15 @@ class MortgageCalculatorHandler
 		}
 
 		if ($route == 'get_tables') {
+
 			$pageNumber = intval($_REQUEST['page_number']);
 			$perPage 	= intval($_REQUEST['per_page']);
-			static::getTables($pageNumber, $perPage);
+			
+			if ( isset( $_REQUEST['search'] ) && $_REQUEST['search'] ) {
+				$search = sanitize_text_field( $_REQUEST['search'] );
+			}
+		
+			static::getTables($pageNumber, $perPage, $search);
 		}
 
 		if ($route == 'get_table') {
@@ -35,9 +41,12 @@ class MortgageCalculatorHandler
         if ($route == 'update_table_config') {
             $tableId = intval($_REQUEST['table_id']);
             $table_con = wp_unslash($_REQUEST['table_config']);
-            $table_config = json_decode(trim(stripslashes($table_con)), true);
+			$table_config = json_decode(trim(stripslashes($table_con)), true);
+			
+			$title = sanitize_text_field($_REQUEST['post_title']); 
+
 			$calculatorType = sanitize_text_field($_REQUEST['calculator_type']); 
-			static::updateTableConfig($tableId, $table_config, $calculatorType);
+			static::updateTableConfig($tableId, $table_config, $title, $calculatorType);
         }
 	}
 
@@ -147,14 +156,15 @@ class MortgageCalculatorHandler
         ));
 	}
 
-	public static function getTables($pageNumber = 1 , $perPage = 10)
+	public static function getTables( $pageNumber = 1 , $perPage = 10, $search )
 	{
 		$offset = ($pageNumber - 1 ) * $perPage;
 
 		$tables = get_posts(array(
 			'post_type' => CPT::$CPTName,
 			'offset' => $offset,
-			'posts_per_page' => $perPage
+			'posts_per_page' => $perPage,
+			's'				 => $search
 		));
 		
 		$totalCount = wp_count_posts(CPT::$CPTName);
@@ -185,10 +195,11 @@ class MortgageCalculatorHandler
         ), 200);
 	}
 
-	public static function updateTableConfig($tableId, $table_config, $calculatorType)
+	public static function updateTableConfig($tableId, $table_config, $title, $calculatorType)
 	{
 		$UpdateMortgageCalculator = array(
-	      'ID'           => $tableId,
+		  'ID'           => $tableId,
+		  'post_title'   => $title,
 	      'post_content' => $calculatorType
 		);
 

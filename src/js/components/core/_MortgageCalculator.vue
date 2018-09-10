@@ -113,7 +113,7 @@
                     </div>
             </div>
 
-            <div style="overflow-x:auto;">
+            <div style="overflow-x:auto; width:100%">
                 <table>
                     <thead>
                         <tr>

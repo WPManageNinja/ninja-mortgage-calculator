@@ -1212,7 +1212,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticStyle: { "overflow-x": "auto" } }, [
+          _c("div", { staticStyle: { "overflow-x": "auto", width: "100%" } }, [
             _c("table", [
               _vm._m(2),
               _vm._v(" "),

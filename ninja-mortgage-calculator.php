@@ -26,7 +26,7 @@ class NINJAMortgageCalculator
 	{
 		$this->commonHooks();
 		$this->adminHooks();
-		$this->publicHooks();
+		
 		$this->loadTextDomain();
 	}
 
@@ -35,6 +35,9 @@ class NINJAMortgageCalculator
 	{
 		add_action('init', array('NinjaMortgage\Classes\CPT', 'register')); 
 		add_action('wp_enqueue_scripts', array($this, 'enqueueScripts') );
+
+		add_action('admin_enqueue_scripts', array($this, 'adminEnqueueScripts') );
+
 		add_shortcode('ninja_mortgage_cal', array('NinjaMortgage\Classes\MortgageCalculatorHandler','handleShortCode') );
 
 		add_action('init', function () {
@@ -50,14 +53,12 @@ class NINJAMortgageCalculator
 
 		add_action('ninja_mortgage_added_new_table', array('NinjaMortgage\Classes\MortgageCalculatorHandler','populateDemoData') );
 		add_action('ninija_mortgage_table_config_updated', array('NinjaMortgage\Classes\MortgageCalculatorHandler','deleteCache') );
-	
-		wp_enqueue_style('mortgage_icon_css', NINJA_MORTGAGE_PLUGIN_DIR_URL.'/public/css/admin.css');
 	}
 
 
-	public function publicHooks()
+	public function adminEnqueueScripts()
 	{
-		
+		wp_enqueue_style('mortgage_icon_css', NINJA_MORTGAGE_PLUGIN_DIR_URL.'/public/css/admin.css');
 	}
 
 	public function enqueueScripts()
