@@ -60,20 +60,130 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 237);
+/******/ 	return __webpack_require__(__webpack_require__.s = 247);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 237:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 2:
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(238);
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
 
 
 /***/ }),
 
-/***/ 238:
+/***/ 247:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(248);
+
+
+/***/ }),
+
+/***/ 248:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82,7 +192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vee_validate__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue__);
 
 
@@ -101,15 +211,15 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
 /***/ }),
 
-/***/ 239:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(240)
+var __vue_script__ = __webpack_require__(250)
 /* template */
-var __vue_template__ = __webpack_require__(250)
+var __vue_template__ = __webpack_require__(260)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -149,17 +259,20 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 240:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue__);
+//
+//
+//
 //
 //
 //
@@ -199,7 +312,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             mortgage_refinance_default: {},
             mortgage_payment_label: {},
             mortgage_payment_default: {},
-            amortization_table: true
+            amortization_table: true,
+            currency_type: ''
         };
     },
 
@@ -209,11 +323,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'app-mortgage-payment': __WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue___default.a
     },
     created: function created() {
+        console.log(window.ninja_mortgage_cal_vars);
         var res = window.ninja_mortgage_cal_vars.mortgageMetaData;
         var post = window.ninja_mortgage_cal_vars.post;
         this.calculator_type = post.post_content;
         this.table_id = post.ID;
         this.table_title = post.post_title;
+        this.currency_type = res.currency_type;
 
         if (this.calculator_type === 'mortgage_calculator') {
             this.mortgage_calculator_label = res.selectedLabel;
@@ -231,15 +347,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 241:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(242)
+var __vue_script__ = __webpack_require__(252)
 /* template */
-var __vue_template__ = __webpack_require__(243)
+var __vue_template__ = __webpack_require__(253)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -279,7 +395,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 242:
+/***/ 252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -424,9 +540,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['tableTitle', 'mortgageCalcLabel', 'mortgageCalcDef', 'amortizationTable'],
+    props: ['tableTitle', 'mortgageCalcLabel', 'mortgageCalcDef', 'amortizationTable', 'currencyType'],
     data: function data() {
         return {
             loanAmount: 0,
@@ -780,7 +913,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 243:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -803,42 +936,48 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.loanAmount,
-              expression: "loanAmount"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: _vm.rules,
-              expression: "rules"
-            }
-          ],
-          staticClass: "typeNumber",
-          class: { error: _vm.errors.has("loanAmount") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "loanAmount",
-            name: "loanAmount",
-            pattern: "/^-?\\d+\\.?\\d*$/",
-            onKeyPress: "if(this.value.length==8) return false;",
-            placeholder: _vm.getLoanAmount(_vm.mortgageCalcLabel.loanAmount)
-          },
-          domProps: { value: _vm.loanAmount },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.loanAmount,
+                expression: "loanAmount"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: _vm.rules,
+                expression: "rules"
               }
-              _vm.loanAmount = $event.target.value
+            ],
+            staticClass: "typeNumber",
+            class: { error: _vm.errors.has("loanAmount") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "loanAmount",
+              name: "loanAmount",
+              pattern: "/^-?\\d+\\.?\\d*$/",
+              onKeyPress: "if(this.value.length==8) return false;",
+              placeholder: _vm.getLoanAmount(_vm.mortgageCalcLabel.loanAmount)
+            },
+            domProps: { value: _vm.loanAmount },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.loanAmount = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("loanAmount")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -862,33 +1001,41 @@ var render = function() {
           ]),
           _c("br"),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.downPament,
-                expression: "downPament"
-              }
-            ],
-            staticClass: "typeNumbers",
-            attrs: {
-              type: "number",
-              min: "0",
-              id: "downPament",
-              name: "downPament",
-              placeholder: _vm.getDownPayment(_vm.mortgageCalcLabel.downPament)
-            },
-            domProps: { value: _vm.downPament },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "inp_fields" }, [
+            _c("span", { staticClass: "currency_icon" }, [
+              _vm._v(_vm._s(_vm.currencyType))
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.downPament,
+                  expression: "downPament"
                 }
-                _vm.downPament = $event.target.value
+              ],
+              staticClass: "typeNumbers",
+              attrs: {
+                type: "number",
+                min: "0",
+                id: "downPament",
+                name: "downPament",
+                placeholder: _vm.getDownPayment(
+                  _vm.mortgageCalcLabel.downPament
+                )
+              },
+              domProps: { value: _vm.downPament },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.downPament = $event.target.value
+                }
               }
-            }
-          })
+            })
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "downPamentPerc" }, [
@@ -902,33 +1049,39 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.downPamentPerc,
-                expression: "downPamentPerc"
-              }
-            ],
-            staticClass: "typeNumbers",
-            attrs: {
-              type: "number",
-              min: "0",
-              id: "downPamentPerc",
-              name: "downPamentPerc",
-              placeholder: _vm.getPercentage(_vm.mortgageCalcLabel.downPament)
-            },
-            domProps: { value: _vm.downPamentPerc },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "inp_fields" }, [
+            _c("span", { staticClass: "currency_icon" }, [
+              _vm._v(_vm._s(_vm.currencyType))
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.downPamentPerc,
+                  expression: "downPamentPerc"
                 }
-                _vm.downPamentPerc = $event.target.value
+              ],
+              staticClass: "typeNumbers",
+              attrs: {
+                type: "number",
+                min: "0",
+                id: "downPamentPerc",
+                name: "downPamentPerc",
+                placeholder: _vm.getPercentage(_vm.mortgageCalcLabel.downPament)
+              },
+              domProps: { value: _vm.downPamentPerc },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.downPamentPerc = $event.target.value
+                }
               }
-            }
-          })
+            })
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -944,44 +1097,48 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.mortgageTerm,
-                expression: "mortgageTerm"
-              },
-              {
-                name: "validate",
-                rawName: "v-validate",
-                value: _vm.term_rule,
-                expression: "term_rule"
-              }
-            ],
-            staticClass: "typeNumbers",
-            class: { error: _vm.errors.has("mortgageTerm") },
-            attrs: {
-              type: "number",
-              min: "0",
-              id: "mortgageTerm",
-              name: "mortgageTerm",
-              placeholder: _vm.getMortgageTerm(
-                _vm.mortgageCalcLabel.mortgageTerm
-              ),
-              pattern: "/^-?\\d+\\.?\\d*$/",
-              onKeyPress: "if(this.value.length==2) return false;"
-            },
-            domProps: { value: _vm.mortgageTerm },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "inp_fields" }, [
+            _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.mortgageTerm,
+                  expression: "mortgageTerm"
+                },
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: _vm.term_rule,
+                  expression: "term_rule"
                 }
-                _vm.mortgageTerm = $event.target.value
+              ],
+              staticClass: "typeNumbers",
+              class: { error: _vm.errors.has("mortgageTerm") },
+              attrs: {
+                type: "number",
+                min: "0",
+                id: "mortgageTerm",
+                name: "mortgageTerm",
+                placeholder: _vm.getMortgageTerm(
+                  _vm.mortgageCalcLabel.mortgageTerm
+                ),
+                pattern: "/^-?\\d+\\.?\\d*$/",
+                onKeyPress: "if(this.value.length==2) return false;"
+              },
+              domProps: { value: _vm.mortgageTerm },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.mortgageTerm = $event.target.value
+                }
               }
-            }
-          }),
+            })
+          ]),
           _vm._v(" "),
           _vm.errors.has("mortgageTerm")
             ? _c("span", { staticStyle: { color: "red" } }, [
@@ -1003,44 +1160,48 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.mortgageTermMonth,
-                expression: "mortgageTermMonth"
-              },
-              {
-                name: "validate",
-                rawName: "v-validate",
-                value: _vm.term_rule_month,
-                expression: "term_rule_month"
-              }
-            ],
-            staticClass: "typeNumbers",
-            class: { error: _vm.errors.has("mortgageTermMonth") },
-            attrs: {
-              type: "number",
-              min: "0",
-              id: "mortgageTermMonth",
-              name: "mortgageTermMonth",
-              placeholder: _vm.getMortgageTermMonth(
-                _vm.mortgageCalcLabel.mortgageTerm
-              ),
-              pattern: "/^-?\\d+\\.?\\d*$/",
-              onKeyPress: "if(this.value.length==3) return false;"
-            },
-            domProps: { value: _vm.mortgageTermMonth },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "inp_fields" }, [
+            _c("span", { staticClass: "months_icon" }, [_vm._v("months")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.mortgageTermMonth,
+                  expression: "mortgageTermMonth"
+                },
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: _vm.term_rule_month,
+                  expression: "term_rule_month"
                 }
-                _vm.mortgageTermMonth = $event.target.value
+              ],
+              staticClass: "typeNumbers",
+              class: { error: _vm.errors.has("mortgageTermMonth") },
+              attrs: {
+                type: "number",
+                min: "0",
+                id: "mortgageTermMonth",
+                name: "mortgageTermMonth",
+                placeholder: _vm.getMortgageTermMonth(
+                  _vm.mortgageCalcLabel.mortgageTerm
+                ),
+                pattern: "/^-?\\d+\\.?\\d*$/",
+                onKeyPress: "if(this.value.length==3) return false;"
+              },
+              domProps: { value: _vm.mortgageTermMonth },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.mortgageTermMonth = $event.target.value
+                }
               }
-            }
-          }),
+            })
+          ]),
           _vm._v(" "),
           _vm.errors.has("mortgageTermMonth")
             ? _c("span", { staticStyle: { color: "red" } }, [
@@ -1064,44 +1225,48 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.annualInterestRate,
-              expression: "annualInterestRate"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: _vm.annual_int_rate_term,
-              expression: "annual_int_rate_term"
-            }
-          ],
-          staticClass: "typeNumber",
-          class: { error: _vm.errors.has("annualInterestRate") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "annualInterestRate",
-            name: "annualInterestRate",
-            placeholder: _vm.getAnnualIntRate(
-              _vm.mortgageCalcLabel.annualInterestRate
-            ),
-            pattern: "/^-?\\d+\\.?\\d*$/",
-            onKeyPress: "if(this.value.length==2) return false;"
-          },
-          domProps: { value: _vm.annualInterestRate },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.annualInterestRate,
+                expression: "annualInterestRate"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: _vm.annual_int_rate_term,
+                expression: "annual_int_rate_term"
               }
-              _vm.annualInterestRate = $event.target.value
+            ],
+            staticClass: "typeNumber",
+            class: { error: _vm.errors.has("annualInterestRate") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "annualInterestRate",
+              name: "annualInterestRate",
+              placeholder: _vm.getAnnualIntRate(
+                _vm.mortgageCalcLabel.annualInterestRate
+              ),
+              pattern: "/^-?\\d+\\.?\\d*$/",
+              onKeyPress: "if(this.value.length==2) return false;"
+            },
+            domProps: { value: _vm.annualInterestRate },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.annualInterestRate = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("annualInterestRate")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -1116,18 +1281,25 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("h1", [
-          _c("span", [_vm._v("$")]),
+          _c("span", [_vm._v(_vm._s(this.currencyType))]),
           _vm._v(" " + _vm._s(_vm.monthlyPayment.toFixed(2)))
         ]),
         _vm._v(" "),
         _c("p", [
           _c("b", [_vm._v("Total principal paid")]),
-          _vm._v(": $" + _vm._s(_vm.principalPaid))
+          _vm._v(
+            ": " + _vm._s(this.currencyType) + " " + _vm._s(_vm.principalPaid)
+          )
         ]),
         _vm._v(" "),
         _c("p", [
           _c("b", [_vm._v("Total interest paid")]),
-          _vm._v(": $" + _vm._s(_vm.total_interest.toFixed(2)))
+          _vm._v(
+            ": " +
+              _vm._s(this.currencyType) +
+              " " +
+              _vm._s(_vm.total_interest.toFixed(2))
+          )
         ])
       ])
     ]),
@@ -1288,15 +1460,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(245)
+var __vue_script__ = __webpack_require__(255)
 /* template */
-var __vue_template__ = __webpack_require__(246)
+var __vue_template__ = __webpack_require__(256)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1336,7 +1508,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 245:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1540,9 +1712,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['tableTitle', 'mortgageRefinanceLabel', 'mortgageRefinanceDef'],
+    props: ['tableTitle', 'mortgageRefinanceLabel', 'mortgageRefinanceDef', 'currencyType'],
     data: function data() {
         return {
             current_monthly_payment: 0,
@@ -1832,7 +2055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 246:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1855,42 +2078,48 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.current_monthly_payment,
-              expression: "current_monthly_payment"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: "required",
-              expression: "'required'"
-            }
-          ],
-          staticClass: "typeNumbers",
-          class: { error: _vm.errors.has("current_monthly_payment") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "current_monthly_payment",
-            name: "current_monthly_payment",
-            placeholder: _vm.getCurrentlyPayment(
-              _vm.mortgageRefinanceLabel.currentlyMonthlyPayment
-            )
-          },
-          domProps: { value: _vm.current_monthly_payment },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.current_monthly_payment,
+                expression: "current_monthly_payment"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required",
+                expression: "'required'"
               }
-              _vm.current_monthly_payment = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            class: { error: _vm.errors.has("current_monthly_payment") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "current_monthly_payment",
+              name: "current_monthly_payment",
+              placeholder: _vm.getCurrentlyPayment(
+                _vm.mortgageRefinanceLabel.currentlyMonthlyPayment
+              )
+            },
+            domProps: { value: _vm.current_monthly_payment },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.current_monthly_payment = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("current_monthly_payment")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -1913,42 +2142,46 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.current_loan_interest_rate,
-              expression: "current_loan_interest_rate"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: "required",
-              expression: "'required'"
-            }
-          ],
-          staticClass: "typeNumbers",
-          class: { error: _vm.errors.has("current_loan_interest_rate") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "current_loan_interest_rate",
-            name: "current_loan_interest_rate",
-            placeholder: _vm.getCurrentLoanRate(
-              _vm.mortgageRefinanceLabel.loanIntRate
-            )
-          },
-          domProps: { value: _vm.current_loan_interest_rate },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.current_loan_interest_rate,
+                expression: "current_loan_interest_rate"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required",
+                expression: "'required'"
               }
-              _vm.current_loan_interest_rate = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            class: { error: _vm.errors.has("current_loan_interest_rate") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "current_loan_interest_rate",
+              name: "current_loan_interest_rate",
+              placeholder: _vm.getCurrentLoanRate(
+                _vm.mortgageRefinanceLabel.loanIntRate
+              )
+            },
+            domProps: { value: _vm.current_loan_interest_rate },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.current_loan_interest_rate = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("current_loan_interest_rate")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -1973,42 +2206,48 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.balance,
-              expression: "balance"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: "required",
-              expression: "'required'"
-            }
-          ],
-          staticClass: "typeNumbers",
-          class: { error: _vm.errors.has("balance") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "balance",
-            name: "balance",
-            placeholder: _vm.getBalanceMortgage(
-              _vm.mortgageRefinanceLabel.balanceMortgage
-            )
-          },
-          domProps: { value: _vm.balance },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.balance,
+                expression: "balance"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required",
+                expression: "'required'"
               }
-              _vm.balance = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            class: { error: _vm.errors.has("balance") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "balance",
+              name: "balance",
+              placeholder: _vm.getBalanceMortgage(
+                _vm.mortgageRefinanceLabel.balanceMortgage
+              )
+            },
+            domProps: { value: _vm.balance },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.balance = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("balance")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -2031,42 +2270,46 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.new_interest_rate,
-              expression: "new_interest_rate"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: "required",
-              expression: "'required'"
-            }
-          ],
-          staticClass: "typeNumbers",
-          class: { error: _vm.errors.has("new_interest_rate") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "new_interest_rate",
-            name: "new_interest_rate",
-            placeholder: _vm.getNewIntRate(
-              _vm.mortgageRefinanceLabel.newIntRate
-            )
-          },
-          domProps: { value: _vm.new_interest_rate },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.new_interest_rate,
+                expression: "new_interest_rate"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required",
+                expression: "'required'"
               }
-              _vm.new_interest_rate = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            class: { error: _vm.errors.has("new_interest_rate") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "new_interest_rate",
+              name: "new_interest_rate",
+              placeholder: _vm.getNewIntRate(
+                _vm.mortgageRefinanceLabel.newIntRate
+              )
+            },
+            domProps: { value: _vm.new_interest_rate },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.new_interest_rate = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("new_interest_rate")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -2091,42 +2334,46 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.remaining_loan_term,
-              expression: "remaining_loan_term"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: "required",
-              expression: "'required'"
-            }
-          ],
-          staticClass: "typeNumbers",
-          class: { error: _vm.errors.has("remaining_loan_term") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "remaining_loan_term",
-            name: "remaining_loan_term",
-            placeholder: _vm.getRemainingLoan(
-              _vm.mortgageRefinanceLabel.remainingLoanTerm
-            )
-          },
-          domProps: { value: _vm.remaining_loan_term },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.remaining_loan_term,
+                expression: "remaining_loan_term"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required",
+                expression: "'required'"
               }
-              _vm.remaining_loan_term = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            class: { error: _vm.errors.has("remaining_loan_term") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "remaining_loan_term",
+              name: "remaining_loan_term",
+              placeholder: _vm.getRemainingLoan(
+                _vm.mortgageRefinanceLabel.remainingLoanTerm
+              )
+            },
+            domProps: { value: _vm.remaining_loan_term },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.remaining_loan_term = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("remaining_loan_term")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -2149,42 +2396,46 @@ var render = function() {
         ]),
         _c("br"),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.new_loan_term,
-              expression: "new_loan_term"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: "required",
-              expression: "'required'"
-            }
-          ],
-          staticClass: "typeNumbers",
-          class: { error: _vm.errors.has("new_loan_term") },
-          attrs: {
-            type: "number",
-            min: "0",
-            id: "new_loan_term",
-            name: "new_loan_term",
-            placeholder: _vm.getNewLoanTerm(
-              _vm.mortgageRefinanceLabel.newLoanTerm
-            )
-          },
-          domProps: { value: _vm.new_loan_term },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.new_loan_term,
+                expression: "new_loan_term"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required",
+                expression: "'required'"
               }
-              _vm.new_loan_term = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            class: { error: _vm.errors.has("new_loan_term") },
+            attrs: {
+              type: "number",
+              min: "0",
+              id: "new_loan_term",
+              name: "new_loan_term",
+              placeholder: _vm.getNewLoanTerm(
+                _vm.mortgageRefinanceLabel.newLoanTerm
+              )
+            },
+            domProps: { value: _vm.new_loan_term },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.new_loan_term = $event.target.value
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
         _vm.errors.has("new_loan_term")
           ? _c("span", { staticStyle: { color: "red" } }, [
@@ -2247,7 +2498,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "costPoint" }, [
         _c("p", [
-          _c("b", [_vm._v("Costs of points: " + _vm._s(_vm.pointsResult))])
+          _c("b", [
+            _vm._v(
+              "Costs of points: " +
+                _vm._s(_vm.currencyType) +
+                " " +
+                _vm._s(_vm.pointsResult)
+            )
+          ])
         ])
       ])
     ]),
@@ -2264,69 +2522,81 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.application_fee,
-              expression: "application_fee"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "application_fee",
-            id: "application_fee",
-            placeholder: _vm.getApplicationFee(
-              _vm.mortgageRefinanceLabel.applicationFee
-            )
-          },
-          domProps: { value: _vm.application_fee },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.application_fee,
+                expression: "application_fee"
               }
-              _vm.application_fee = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "application_fee",
+              id: "application_fee",
+              placeholder: _vm.getApplicationFee(
+                _vm.mortgageRefinanceLabel.applicationFee
+              )
+            },
+            domProps: { value: _vm.application_fee },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.application_fee = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "common" }, [
         _c("label", [_vm._v(_vm._s(_vm.mortgageRefinanceLabel.creditCheck))]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.credit_check,
-              expression: "credit_check"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            placeholder: _vm.getCreditCheck(
-              _vm.mortgageRefinanceLabel.creditCheck
-            ),
-            min: "0",
-            id: "credit_check",
-            name: "credit_check"
-          },
-          domProps: { value: _vm.credit_check },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.credit_check,
+                expression: "credit_check"
               }
-              _vm.credit_check = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              placeholder: _vm.getCreditCheck(
+                _vm.mortgageRefinanceLabel.creditCheck
+              ),
+              min: "0",
+              id: "credit_check",
+              name: "credit_check"
+            },
+            domProps: { value: _vm.credit_check },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.credit_check = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -2342,35 +2612,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.attorney_fee_yours,
-              expression: "attorney_fee_yours"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "attorney_fee_yours",
-            id: "attorney_fee_yours",
-            placeholder: _vm.getAnthonyYours(
-              _vm.mortgageRefinanceLabel.attorneyFeeYours
-            )
-          },
-          domProps: { value: _vm.attorney_fee_yours },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.attorney_fee_yours,
+                expression: "attorney_fee_yours"
               }
-              _vm.attorney_fee_yours = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "attorney_fee_yours",
+              id: "attorney_fee_yours",
+              placeholder: _vm.getAnthonyYours(
+                _vm.mortgageRefinanceLabel.attorneyFeeYours
+              )
+            },
+            domProps: { value: _vm.attorney_fee_yours },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.attorney_fee_yours = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "common" }, [
@@ -2384,35 +2660,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.attorney_fee_lenders,
-              expression: "attorney_fee_lenders"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            placeholder: _vm.getAnthonyLenders(
-              _vm.mortgageRefinanceLabel.attorneyFeeLenders
-            ),
-            min: "0",
-            id: "attorney_fee_lenders",
-            name: "attorney_fee_lenders"
-          },
-          domProps: { value: _vm.attorney_fee_lenders },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.attorney_fee_lenders,
+                expression: "attorney_fee_lenders"
               }
-              _vm.attorney_fee_lenders = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              placeholder: _vm.getAnthonyLenders(
+                _vm.mortgageRefinanceLabel.attorneyFeeLenders
+              ),
+              min: "0",
+              id: "attorney_fee_lenders",
+              name: "attorney_fee_lenders"
+            },
+            domProps: { value: _vm.attorney_fee_lenders },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.attorney_fee_lenders = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -2428,35 +2710,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.title_search,
-              expression: "title_search"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "title_search",
-            id: "title_search",
-            placeholder: _vm.getTitleSearch(
-              _vm.mortgageRefinanceLabel.titleSearch
-            )
-          },
-          domProps: { value: _vm.title_search },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.title_search,
+                expression: "title_search"
               }
-              _vm.title_search = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "title_search",
+              id: "title_search",
+              placeholder: _vm.getTitleSearch(
+                _vm.mortgageRefinanceLabel.titleSearch
+              )
+            },
+            domProps: { value: _vm.title_search },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.title_search = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "common" }, [
@@ -2470,35 +2758,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.title_insurance,
-              expression: "title_insurance"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            placeholder: _vm.getTitleInsurance(
-              _vm.mortgageRefinanceLabel.titleInsurance
-            ),
-            min: "0",
-            id: "title_insurance",
-            name: "title_insurance"
-          },
-          domProps: { value: _vm.title_insurance },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.title_insurance,
+                expression: "title_insurance"
               }
-              _vm.title_insurance = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              placeholder: _vm.getTitleInsurance(
+                _vm.mortgageRefinanceLabel.titleInsurance
+              ),
+              min: "0",
+              id: "title_insurance",
+              name: "title_insurance"
+            },
+            domProps: { value: _vm.title_insurance },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.title_insurance = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -2514,35 +2808,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.appraisal_fee,
-              expression: "appraisal_fee"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "appraisal_fee",
-            id: "appraisal_fee",
-            placeholder: _vm.getAppraisalFee(
-              _vm.mortgageRefinanceLabel.appraisalFee
-            )
-          },
-          domProps: { value: _vm.appraisal_fee },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.appraisal_fee,
+                expression: "appraisal_fee"
               }
-              _vm.appraisal_fee = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "appraisal_fee",
+              id: "appraisal_fee",
+              placeholder: _vm.getAppraisalFee(
+                _vm.mortgageRefinanceLabel.appraisalFee
+              )
+            },
+            domProps: { value: _vm.appraisal_fee },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.appraisal_fee = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "common" }, [
@@ -2556,35 +2856,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.inspections,
-              expression: "inspections"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            placeholder: _vm.getInspections(
-              _vm.mortgageRefinanceLabel.inspections
-            ),
-            min: "0",
-            id: "inspections",
-            name: "inspections"
-          },
-          domProps: { value: _vm.inspections },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.inspections,
+                expression: "inspections"
               }
-              _vm.inspections = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              placeholder: _vm.getInspections(
+                _vm.mortgageRefinanceLabel.inspections
+              ),
+              min: "0",
+              id: "inspections",
+              name: "inspections"
+            },
+            domProps: { value: _vm.inspections },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.inspections = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -2600,33 +2906,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.local_fees,
-              expression: "local_fees"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "local_fees",
-            id: "local_fees",
-            placeholder: _vm.getLocalFees(_vm.mortgageRefinanceLabel.localFees)
-          },
-          domProps: { value: _vm.local_fees },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.local_fees,
+                expression: "local_fees"
               }
-              _vm.local_fees = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "local_fees",
+              id: "local_fees",
+              placeholder: _vm.getLocalFees(
+                _vm.mortgageRefinanceLabel.localFees
+              )
+            },
+            domProps: { value: _vm.local_fees },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.local_fees = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "common" }, [
@@ -2640,35 +2954,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.document_preparation,
-              expression: "document_preparation"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            placeholder: _vm.getDocumentPreparation(
-              _vm.mortgageRefinanceLabel.documentPreparation
-            ),
-            min: "0",
-            id: "document_preparation",
-            name: "document_preparation"
-          },
-          domProps: { value: _vm.document_preparation },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.document_preparation,
+                expression: "document_preparation"
               }
-              _vm.document_preparation = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              placeholder: _vm.getDocumentPreparation(
+                _vm.mortgageRefinanceLabel.documentPreparation
+              ),
+              min: "0",
+              id: "document_preparation",
+              name: "document_preparation"
+            },
+            domProps: { value: _vm.document_preparation },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.document_preparation = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -2684,33 +3004,39 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.other,
-              expression: "other"
-            }
-          ],
-          staticClass: "typeNumbers",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "other",
-            id: "other",
-            placeholder: _vm.getOther(_vm.mortgageRefinanceLabel.other)
-          },
-          domProps: { value: _vm.other },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.other,
+                expression: "other"
               }
-              _vm.other = $event.target.value
+            ],
+            staticClass: "typeNumbers",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "other",
+              id: "other",
+              placeholder: _vm.getOther(_vm.mortgageRefinanceLabel.other)
+            },
+            domProps: { value: _vm.other },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.other = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -2718,28 +3044,48 @@ var render = function() {
       _vm._m(1),
       _vm._v(" "),
       _c("h1", [
-        _c("span", [_vm._v("$")]),
-        _vm._v(_vm._s(_vm.monthly_payment.toFixed(2)))
+        _c("span", [_vm._v(_vm._s(_vm.currencyType))]),
+        _vm._v(" " + _vm._s(_vm.monthly_payment.toFixed(2)))
       ]),
       _vm._v(" "),
       _c("p", [
         _c("b", [_vm._v("Monthly Savings")]),
-        _vm._v(": $" + _vm._s(_vm.monthly_savings.toFixed(2)))
+        _vm._v(
+          ": " +
+            _vm._s(_vm.currencyType) +
+            " " +
+            _vm._s(_vm.monthly_savings.toFixed(2))
+        )
       ]),
       _vm._v(" "),
       _c("p", [
         _c("b", [_vm._v("Difference in Interest")]),
-        _vm._v(": $" + _vm._s(_vm.diff_in_interest.toFixed(2)))
+        _vm._v(
+          ": " +
+            _vm._s(_vm.currencyType) +
+            " " +
+            _vm._s(_vm.diff_in_interest.toFixed(2))
+        )
       ]),
       _vm._v(" "),
       _c("p", [
         _c("b", [_vm._v("Total cost")]),
-        _vm._v(": $" + _vm._s(_vm.total_cost.toFixed(2)))
+        _vm._v(
+          ": " +
+            _vm._s(_vm.currencyType) +
+            " " +
+            _vm._s(_vm.total_cost.toFixed(2))
+        )
       ]),
       _vm._v(" "),
       _c("p", [
         _c("b", [_vm._v("Months to recoup costs")]),
-        _vm._v(": $" + _vm._s(_vm.months_rec_costs.toFixed(2)))
+        _vm._v(
+          ": " +
+            _vm._s(_vm.currencyType) +
+            " " +
+            _vm._s(_vm.months_rec_costs.toFixed(2))
+        )
       ])
     ])
   ])
@@ -2773,15 +3119,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 247:
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(248)
+var __vue_script__ = __webpack_require__(258)
 /* template */
-var __vue_template__ = __webpack_require__(249)
+var __vue_template__ = __webpack_require__(259)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2821,7 +3167,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 248:
+/***/ 258:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2872,9 +3218,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['tableTitle', 'mortgagePaymentLabel', 'mortgagePaymentDefault'],
+    props: ['tableTitle', 'mortgagePaymentLabel', 'mortgagePaymentDefault', 'currencyType'],
     data: function data() {
         return {
             mortgage_amount: 'Mortgage Amount',
@@ -2966,7 +3327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 249:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2988,35 +3349,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.mortgage_amount_def_val,
-              expression: "mortgage_amount_def_val"
-            }
-          ],
-          staticClass: "typeNumbersField",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "mortgage_amount",
-            id: "mortgage_amount",
-            placeholder: _vm.getMortgageAmnt(
-              _vm.mortgagePaymentLabel.mortgageAmount
-            )
-          },
-          domProps: { value: _vm.mortgage_amount_def_val },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.mortgage_amount_def_val,
+                expression: "mortgage_amount_def_val"
               }
-              _vm.mortgage_amount_def_val = $event.target.value
+            ],
+            staticClass: "typeNumbersField",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "mortgage_amount",
+              id: "mortgage_amount",
+              placeholder: _vm.getMortgageAmnt(
+                _vm.mortgagePaymentLabel.mortgageAmount
+              )
+            },
+            domProps: { value: _vm.mortgage_amount_def_val },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.mortgage_amount_def_val = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "term_in_years" }, [
@@ -3030,35 +3397,39 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.term_in_years_def_val,
-              expression: "term_in_years_def_val"
-            }
-          ],
-          staticClass: "typeNumbersField",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "term_in_years",
-            id: "term_in_years",
-            placeholder: _vm.getTermInYears(
-              _vm.mortgagePaymentLabel.termInYears
-            )
-          },
-          domProps: { value: _vm.term_in_years_def_val },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.term_in_years_def_val,
+                expression: "term_in_years_def_val"
               }
-              _vm.term_in_years_def_val = $event.target.value
+            ],
+            staticClass: "typeNumbersField",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "term_in_years",
+              id: "term_in_years",
+              placeholder: _vm.getTermInYears(
+                _vm.mortgagePaymentLabel.termInYears
+              )
+            },
+            domProps: { value: _vm.term_in_years_def_val },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.term_in_years_def_val = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "interest_rate" }, [
@@ -3072,35 +3443,39 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.interest_rate_def_val,
-              expression: "interest_rate_def_val"
-            }
-          ],
-          staticClass: "typeNumbersField",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "interest_rate",
-            id: "interest_rate",
-            placeholder: _vm.getInterestRate(
-              _vm.mortgagePaymentLabel.interestRate
-            )
-          },
-          domProps: { value: _vm.interest_rate_def_val },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.interest_rate_def_val,
+                expression: "interest_rate_def_val"
               }
-              _vm.interest_rate_def_val = $event.target.value
+            ],
+            staticClass: "typeNumbersField",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "interest_rate",
+              id: "interest_rate",
+              placeholder: _vm.getInterestRate(
+                _vm.mortgagePaymentLabel.interestRate
+              )
+            },
+            domProps: { value: _vm.interest_rate_def_val },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.interest_rate_def_val = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "annual_property_taxes" }, [
@@ -3114,35 +3489,41 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.annual_property_taxes_def_val,
-              expression: "annual_property_taxes_def_val"
-            }
-          ],
-          staticClass: "typeNumbersField",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "annual_property_taxes",
-            id: "annual_property_taxes",
-            placeholder: _vm.getPropTaxes(
-              _vm.mortgagePaymentLabel.annualPropertyTaxes
-            )
-          },
-          domProps: { value: _vm.annual_property_taxes_def_val },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.annual_property_taxes_def_val,
+                expression: "annual_property_taxes_def_val"
               }
-              _vm.annual_property_taxes_def_val = $event.target.value
+            ],
+            staticClass: "typeNumbersField",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "annual_property_taxes",
+              id: "annual_property_taxes",
+              placeholder: _vm.getPropTaxes(
+                _vm.mortgagePaymentLabel.annualPropertyTaxes
+              )
+            },
+            domProps: { value: _vm.annual_property_taxes_def_val },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.annual_property_taxes_def_val = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "annual_property_insurance" }, [
@@ -3156,47 +3537,57 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.annual_property_insurance_def_val,
-              expression: "annual_property_insurance_def_val"
-            }
-          ],
-          staticClass: "typeNumbersField",
-          attrs: {
-            type: "number",
-            min: "0",
-            name: "annual_property_insurance",
-            id: "annual_property_insurance",
-            placeholder: _vm.getInsurance(
-              _vm.mortgagePaymentLabel.annualHomeInsurance
-            )
-          },
-          domProps: { value: _vm.annual_property_insurance_def_val },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "inp_fields" }, [
+          _c("span", { staticClass: "currency_icon" }, [
+            _vm._v(_vm._s(_vm.currencyType))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.annual_property_insurance_def_val,
+                expression: "annual_property_insurance_def_val"
               }
-              _vm.annual_property_insurance_def_val = $event.target.value
+            ],
+            staticClass: "typeNumbersField",
+            attrs: {
+              type: "number",
+              min: "0",
+              name: "annual_property_insurance",
+              id: "annual_property_insurance",
+              placeholder: _vm.getInsurance(
+                _vm.mortgagePaymentLabel.annualHomeInsurance
+              )
+            },
+            domProps: { value: _vm.annual_property_insurance_def_val },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.annual_property_insurance_def_val = $event.target.value
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mortgage_payment_pi" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("h5", [_vm._v("$" + _vm._s(_vm.pi.toFixed(2)))])
+        _c("h5", [
+          _vm._v(_vm._s(_vm.currencyType) + " " + _vm._s(_vm.pi.toFixed(2)))
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mortgage_payment_piti" }, [
         _vm._m(1),
         _vm._v(" "),
-        _c("h5", [_vm._v("$" + _vm._s(_vm.piti.toFixed(2)))])
+        _c("h5", [
+          _vm._v(_vm._s(_vm.currencyType) + " " + _vm._s(_vm.piti.toFixed(2)))
+        ])
       ])
     ])
   ])
@@ -3226,7 +3617,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 250:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3243,7 +3634,8 @@ var render = function() {
                 tableTitle: _vm.table_title,
                 mortgageCalcLabel: _vm.mortgage_calculator_label,
                 mortgageCalcDef: _vm.mortgage_calculator_default,
-                amortizationTable: _vm.amortization_table
+                amortizationTable: _vm.amortization_table,
+                currencyType: _vm.currency_type
               }
             })
           ],
@@ -3259,7 +3651,8 @@ var render = function() {
               attrs: {
                 tableTitle: _vm.table_title,
                 mortgageRefinanceLabel: _vm.mortgage_refinance_label,
-                mortgageRefinanceDef: _vm.mortgage_refinance_default
+                mortgageRefinanceDef: _vm.mortgage_refinance_default,
+                currencyType: _vm.currency_type
               }
             })
           ],
@@ -3275,7 +3668,8 @@ var render = function() {
               attrs: {
                 tableTitle: _vm.table_title,
                 mortgagePaymentLabel: _vm.mortgage_payment_label,
-                mortgagePaymentDefault: _vm.mortgage_payment_default
+                mortgagePaymentDefault: _vm.mortgage_payment_default,
+                currencyType: _vm.currency_type
               }
             })
           ],
@@ -3364,116 +3758,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
 
 /***/ }),
 

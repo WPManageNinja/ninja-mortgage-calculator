@@ -16,6 +16,24 @@ $calcTableBgColor: #E7EDF5;
 		width:100%;
 		display:inline-block;
 	}
+
+	.months{
+		width: 100%;
+		display:inline-block;
+		position: relative;
+		color: #6F707B;
+	}
+	.months input{
+		padding-left:15px;
+	}
+	.months:before {
+		position: absolute;
+		content:"months";
+		right: 7px;
+		top: 19px;
+	}
+
+		 
 	p {
 		margin:0 !important;
 		padding:0 !important;
@@ -36,6 +54,33 @@ $calcTableBgColor: #E7EDF5;
 		background-color: $calcTableBgColor;
 		padding: 15px;
 		margin-bottom: 15px;
+
+		.inp_fields {
+			.currency_icon {
+				position: absolute;
+				margin-top: 18px;
+				margin-left: 7px;
+				color: #6D6D6D;
+			}
+			.years_icon {
+				position: absolute;
+				margin-top: 18px;
+				margin-left: 220px;
+				color: #6D6D6D;
+			}
+			.months_icon {
+				position: absolute;
+				margin-top: 18px;
+				margin-left: 200px;
+				color: #6D6D6D;
+			}
+			.percentage {
+				position: absolute;
+				margin-top: 18px;
+				margin-left: 570px;
+				color: #6D6D6D;
+			}
+		}
 
 		input[type=text] {
 		    width: 100%;
@@ -213,10 +258,34 @@ $calcTableBgColor: #E7EDF5;
 	background-color: $calcTableBgColor;
 	padding: 15px;
 
+	.inp_fields {
+		.currency_icon {
+			position: absolute;
+			margin-top: 18px;
+			margin-left: 7px;
+			color: #6D6D6D;
+		}
+
+		.percentage {
+			position: absolute;
+			margin-top: 18px;
+			margin-left: 240px;
+			color: #6D6D6D;
+		}
+
+		.years_icon {
+			position: absolute;
+			margin-top: 18px;
+			margin-left: 210px;
+			color: #6D6D6D;
+		}
+	}
+
 	.currentlyMonthlyPaymentSection,.balanceleftonMortgageSection,.remainingLoanTermSection{
 		width:100%;
 		display:inline-block;
 	}
+
 
 	p {
 		margin:0 !important;
@@ -325,7 +394,7 @@ $calcTableBgColor: #E7EDF5;
 	
 	.loan-info {
 	    background-color: $calcTableBgColor;
-	    padding: 30px;
+		padding: 30px;
 		.typeNumbersField {
 			width: 100%;
 			padding: 12px 20px;
@@ -344,15 +413,92 @@ $calcTableBgColor: #E7EDF5;
 		.mortgage_payment_piti {
 			text-align: center;
 		}
+		.inp_fields {
+			.currency_icon {
+				position: absolute;
+				margin-top: 18px;
+				margin-left: 7px;
+				color: #6D6D6D;
+			}
+	
+			.percentage {
+				position: absolute;
+				margin-top: 18px;
+				margin-left: 520px;
+				color: #6D6D6D;
+			}
+	
+			.years_icon {
+				position: absolute;
+				margin-top: 18px;
+				margin-left: 500px;
+				color: #6D6D6D;
+			}
+		}
 	}
 }
 
 
-// media query
+// media queries
+
+@media(max-width: 500px) {
+	.mortgage_calculator {
+		.mortgage_calc_fields {
+			.inp_fields {
+				.years_icon {
+					position: absolute;
+					margin-top: 18px;
+					margin-left: 190px;
+					color: #6D6D6D;
+				}
+				.months_icon {
+					position: absolute;
+					margin-top: 18px;
+					margin-left: 150px;
+					color: #6D6D6D;
+				}
+				.percentage {
+					position: absolute;
+					margin-top: 18px;
+					margin-left: 170px;
+					color: #6D6D6D;
+				}
+			}
+		}
+	}
+}
+
+@media(max-width: 600px) {
+	.mortgage_calculator {
+		.mortgage_calc_fields {
+			.inp_fields {
+				.years_icon {
+					position: absolute;
+					margin-top: 18px;
+					margin-left: 240px;
+					color: #6D6D6D;
+				}
+				.months_icon {
+					position: absolute;
+					margin-top: 18px;
+					margin-left: 230px;
+					color: #6D6D6D;
+				}
+				.percentage {
+					position: absolute;
+					margin-top: 18px;
+					margin-left: 270px;
+					color: #6D6D6D;
+				}
+			}
+		}
+	}
+}
 
 @media(max-width:481px){
 		.mortgage_calculator {
 			.mortgage_calc_fields {
+
 				.downPament, .downPamentPerc, .mortgageTerm, .mortgageTermMonth 
 				{
 				 width: 100% ;

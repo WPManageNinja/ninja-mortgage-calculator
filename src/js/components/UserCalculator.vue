@@ -4,17 +4,20 @@
             <app-mortgage-calc :tableTitle="table_title" 
                                :mortgageCalcLabel="mortgage_calculator_label" 
                                :mortgageCalcDef="mortgage_calculator_default"
-                               :amortizationTable="amortization_table" />
+                               :amortizationTable="amortization_table"
+                               :currencyType="currency_type" />
         </div>
         <div v-if="table_id && calculator_type=='mortgage_refinance'">
             <app-mortgage-refinance :tableTitle="table_title"
                                     :mortgageRefinanceLabel="mortgage_refinance_label"
-                                    :mortgageRefinanceDef="mortgage_refinance_default" />
+                                    :mortgageRefinanceDef="mortgage_refinance_default"
+                                    :currencyType="currency_type"  />
         </div>
         <div v-if="table_id && calculator_type=='mortgage_payment'">
             <app-mortgage-payment :tableTitle="table_title"
                                   :mortgagePaymentLabel="mortgage_payment_label"
-                                  :mortgagePaymentDefault="mortgage_payment_default" />
+                                  :mortgagePaymentDefault="mortgage_payment_default"
+                                  :currencyType="currency_type"  />
         </div>
     </div>
 </template>
@@ -37,7 +40,8 @@
                 mortgage_refinance_default: {},
                 mortgage_payment_label: {},
                 mortgage_payment_default: {},
-                amortization_table: true
+                amortization_table: true,
+                currency_type: ''
             }
         },
         components: {
@@ -46,12 +50,13 @@
             'app-mortgage-payment': MortgagePayment
         },
         created() {
+            console.log(window.ninja_mortgage_cal_vars)
             var res = window.ninja_mortgage_cal_vars.mortgageMetaData;
             var post = window.ninja_mortgage_cal_vars.post;
             this.calculator_type = post.post_content;
             this.table_id = post.ID;
             this.table_title = post.post_title;
-
+            this.currency_type = res.currency_type;
 
             if( this.calculator_type === 'mortgage_calculator' ) {
                 this.mortgage_calculator_label = res.selectedLabel;

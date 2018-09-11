@@ -1,7 +1,8 @@
 <template>
     <el-table :data="tableData"
                 style="width: 100%; margin-top: 10px;"
-                v-loading="tableLoading">
+                v-loading="tableLoading"
+                border>
         
         <el-table-column 
             prop="ID"

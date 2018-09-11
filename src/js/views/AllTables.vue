@@ -226,21 +226,27 @@ export default {
     }
 
     .ninja_mortgage_editor {
-        .section_action {
-            float: right;
-            margin-top: -32px;
-            .form_group {
-                padding-top: 0;
-                margin-bottom: 0;
-                input {
-                    padding: 5px;
+        .editor_header {
+            display: flex;
+            justify-content: space-between;
+            .section_action {
+                position: relative;
+                padding-top: 6px;
+                .form_group {
+                    padding-top: 0;
+                    margin-bottom: 0;
+                    input {
+                        padding: 5px;
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                    }
+                    .el-icon-search {
+                        position: absolute;
+                        top: 14px;
+                        right: 100px;
+                        font-size: 16px;
+                    }
                 }
-            }
-            .el-icon-search {
-                position: absolute;
-                top: 27px;
-                right: 121px;
-                font-size: 16px;
             }
         }
 

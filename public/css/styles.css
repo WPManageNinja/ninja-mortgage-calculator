@@ -7,6 +7,24 @@
   display: inline-block;
 }
 
+.mortgage_calculator .months {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  color: #6F707B;
+}
+
+.mortgage_calculator .months input {
+  padding-left: 15px;
+}
+
+.mortgage_calculator .months:before {
+  position: absolute;
+  content: "months";
+  right: 7px;
+  top: 19px;
+}
+
 .mortgage_calculator p {
   margin: 0 !important;
   padding: 0 !important;
@@ -26,6 +44,34 @@
   background-color: #E7EDF5;
   padding: 15px;
   margin-bottom: 15px;
+}
+
+.mortgage_calculator .mortgage_calc_fields .inp_fields .currency_icon {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 7px;
+  color: #6D6D6D;
+}
+
+.mortgage_calculator .mortgage_calc_fields .inp_fields .years_icon {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 220px;
+  color: #6D6D6D;
+}
+
+.mortgage_calculator .mortgage_calc_fields .inp_fields .months_icon {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 200px;
+  color: #6D6D6D;
+}
+
+.mortgage_calculator .mortgage_calc_fields .inp_fields .percentage {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 570px;
+  color: #6D6D6D;
 }
 
 .mortgage_calculator .mortgage_calc_fields input[type=text] {
@@ -193,6 +239,27 @@
   padding: 15px;
 }
 
+.mortgage_finance_calc .inp_fields .currency_icon {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 7px;
+  color: #6D6D6D;
+}
+
+.mortgage_finance_calc .inp_fields .percentage {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 240px;
+  color: #6D6D6D;
+}
+
+.mortgage_finance_calc .inp_fields .years_icon {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 210px;
+  color: #6D6D6D;
+}
+
 .mortgage_finance_calc .currentlyMonthlyPaymentSection,
 .mortgage_finance_calc .balanceleftonMortgageSection,
 .mortgage_finance_calc .remainingLoanTermSection {
@@ -334,6 +401,73 @@
 
 .mortgage_payment_calc .loan-info .mortgage_payment_piti {
   text-align: center;
+}
+
+.mortgage_payment_calc .loan-info .inp_fields .currency_icon {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 7px;
+  color: #6D6D6D;
+}
+
+.mortgage_payment_calc .loan-info .inp_fields .percentage {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 520px;
+  color: #6D6D6D;
+}
+
+.mortgage_payment_calc .loan-info .inp_fields .years_icon {
+  position: absolute;
+  margin-top: 18px;
+  margin-left: 500px;
+  color: #6D6D6D;
+}
+
+@media (max-width: 500px) {
+  .mortgage_calculator .mortgage_calc_fields .inp_fields .years_icon {
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 190px;
+    color: #6D6D6D;
+  }
+
+  .mortgage_calculator .mortgage_calc_fields .inp_fields .months_icon {
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 150px;
+    color: #6D6D6D;
+  }
+
+  .mortgage_calculator .mortgage_calc_fields .inp_fields .percentage {
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 170px;
+    color: #6D6D6D;
+  }
+}
+
+@media (max-width: 600px) {
+  .mortgage_calculator .mortgage_calc_fields .inp_fields .years_icon {
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 240px;
+    color: #6D6D6D;
+  }
+
+  .mortgage_calculator .mortgage_calc_fields .inp_fields .months_icon {
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 230px;
+    color: #6D6D6D;
+  }
+
+  .mortgage_calculator .mortgage_calc_fields .inp_fields .percentage {
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 270px;
+    color: #6D6D6D;
+  }
 }
 
 @media (max-width: 481px) {

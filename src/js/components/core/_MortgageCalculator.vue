@@ -6,14 +6,17 @@
             <h3>{{ tableTitle }}</h3>
 			<div class="loanAmountSection">
 				<label>{{ !mortgageCalcLabel.loanAmount ? "Loan Amount" : mortgageCalcLabel.loanAmount }}</label><br />
-				<input type="number" min=0 id="loanAmount" 
-									class="typeNumber"
-						   	 	   name="loanAmount" 
-						           v-model="loanAmount"
-						           pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
-						           v-validate="rules"
-                                   :class="{'error': errors.has('loanAmount') }"
-                                   :placeholder="getLoanAmount(mortgageCalcLabel.loanAmount)">
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 id="loanAmount" 
+                            class="typeNumber"
+                            name="loanAmount" 
+                            v-model="loanAmount"
+                            pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
+                            v-validate="rules"
+                            :class="{'error': errors.has('loanAmount') }"
+                            :placeholder="getLoanAmount(mortgageCalcLabel.loanAmount)">
+                </div>
                 <span v-if="errors.has('loanAmount')" style="color: red;">
                     Please enter a value between 1 and 10000000
                 </span>
@@ -21,47 +24,58 @@
 			<div class="downPamentSection">
 				<div class="downPament">
 					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }}</label><br />
-					<input type="number" min=0 id="downPament"
-										class="typeNumbers" 
-							   	   	   name="downPament" 
-							           :placeholder="getDownPayment(mortgageCalcLabel.downPament)"
-							           v-model="downPament"
-							           >
+					<div class="inp_fields">
+                        <span class="currency_icon">{{currencyType}}</span>
+                        <input type="number" min=0 id="downPament"
+                                class="typeNumbers" 
+                                name="downPament" 
+                                :placeholder="getDownPayment(mortgageCalcLabel.downPament)"
+                                v-model="downPament">
+                    </div>
 				</div>
 				<div class="downPamentPerc">
 					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }} Percentage</label>
-					<input type="number" min=0 id="downPamentPerc" 
-								   class="typeNumbers"
-						   	   	   name="downPamentPerc" 
-						           :placeholder="getPercentage(mortgageCalcLabel.downPament)"
-						           v-model="downPamentPerc">
+					<div class="inp_fields">
+                        <span class="currency_icon">{{currencyType}}</span>
+                        <input type="number" min=0 id="downPamentPerc" 
+                            class="typeNumbers"
+                            name="downPamentPerc" 
+                            :placeholder="getPercentage(mortgageCalcLabel.downPament)"
+                            v-model="downPamentPerc">
+					</div>
 				</div>
 			</div>
 			<div class="mortgageTermSection">
 				<div class="mortgageTerm">
 					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} Years</label>
-					<input type="number" min=0 id="mortgageTerm" 
-									   class="typeNumbers"
-							   	   	   name="mortgageTerm" 
-							           :placeholder="getMortgageTerm(mortgageCalcLabel.mortgageTerm)"
-							           v-model="mortgageTerm"
-							           pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;"
-							           v-validate="term_rule"
-                                	   :class="{'error': errors.has('mortgageTerm') }">
+					<div class="inp_fields">
+                        <span class="years_icon">years</span>
+                        <input type="number" min=0 id="mortgageTerm" 
+                                class="typeNumbers"
+                                name="mortgageTerm" 
+                                :placeholder="getMortgageTerm(mortgageCalcLabel.mortgageTerm)"
+                                v-model="mortgageTerm"
+                                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;"
+                                v-validate="term_rule"
+                                :class="{'error': errors.has('mortgageTerm') }">
+                    </div>
                     <span v-if="errors.has('mortgageTerm')" style="color: red;">
 	                    Please enter a value between 1 and 40
 	                </span>
 				</div>
 				<div class="mortgageTermMonth">
 					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} Month</label>
-					<input type="number" min=0 id="mortgageTermMonth"
-									   class="typeNumbers" 
-							   	  	   name="mortgageTermMonth" 
-							           :placeholder="getMortgageTermMonth(mortgageCalcLabel.mortgageTerm)"
-							           v-model="mortgageTermMonth"
-							           pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;"
-							           v-validate="term_rule_month"
-                                       :class="{'error': errors.has('mortgageTermMonth') }">
+					<div class="inp_fields">
+                        <span class="months_icon">months</span>
+                        <input type="number" min=0 id="mortgageTermMonth"
+                            class="typeNumbers" 
+                            name="mortgageTermMonth" 
+                            :placeholder="getMortgageTermMonth(mortgageCalcLabel.mortgageTerm)"
+                            v-model="mortgageTermMonth"
+                            pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==3) return false;"
+                            v-validate="term_rule_month"
+                            :class="{'error': errors.has('mortgageTermMonth') }">
+                    </div>
                     <span v-if="errors.has('mortgageTermMonth')" style="color: red;">
 	                    Please enter a value between 1 and 480
 	                </span>
@@ -69,14 +83,17 @@
 			</div>
 			<div class="annualIntRateSection">
 				<label>{{ !mortgageCalcLabel.annualInterestRate ? "Annual Interest Rate" : mortgageCalcLabel.annualInterestRate }}</label><br />
-				<input type="number" min=0 id="annualInterestRate" 
-								   class="typeNumber"
-						   	 	   name="annualInterestRate" 
-						           :placeholder="getAnnualIntRate(mortgageCalcLabel.annualInterestRate)"
-						           v-model="annualInterestRate"
-						           pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;"
-						           v-validate="annual_int_rate_term"
-                                   :class="{'error': errors.has('annualInterestRate') }">
+				<div class="inp_fields">
+                    <span class="percentage">%</span>
+                    <input type="number" min=0 id="annualInterestRate" 
+                        class="typeNumber"
+                        name="annualInterestRate" 
+                        :placeholder="getAnnualIntRate(mortgageCalcLabel.annualInterestRate)"
+                        v-model="annualInterestRate"
+                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;"
+                        v-validate="annual_int_rate_term"
+                        :class="{'error': errors.has('annualInterestRate') }">
+                </div>
                 <span v-if="errors.has('annualInterestRate')" style="color: red;">
                     Please enter a value between 1 and 90
                 </span>  
@@ -85,9 +102,9 @@
             <!-- All Cost Section -->
             <div class="cost_section">
                 <p><b>Your estimated monthly payment</b>:</p>
-                <h1><span>$</span> {{ (monthlyPayment).toFixed(2) }}</h1>
-                <p><b>Total principal paid</b>: ${{ principalPaid }}</p>
-                <p><b>Total interest paid</b>: ${{ (total_interest).toFixed(2) }}</p>      
+                <h1><span>{{ this.currencyType }}</span> {{ (monthlyPayment).toFixed(2) }}</h1>
+                <p><b>Total principal paid</b>: {{ this.currencyType }} {{ principalPaid }}</p>
+                <p><b>Total interest paid</b>: {{ this.currencyType }} {{ (total_interest).toFixed(2) }}</p>      
             </div>
 
 		</div>
@@ -144,7 +161,8 @@
         'tableTitle', 
         'mortgageCalcLabel',
         'mortgageCalcDef',
-        'amortizationTable'
+        'amortizationTable',
+        'currencyType'
     ],
     data() {
         return {

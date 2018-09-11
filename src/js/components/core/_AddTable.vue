@@ -5,11 +5,13 @@
         width="60%">
         <label for="new_table_name">Table Name</label>
         <el-input id="new_table_name" type="text" placeholder="Your Table Name" v-model="table_name"></el-input> 
-        <app-input-dropdown
-            pcHolder="Select Calculator Type"
-            v-model="selectedCalc"
-            :optionTypes="calc_types"
-            label="Calculator Type"></app-input-dropdown>
+        <div class="select_calc_type">
+            <app-input-dropdown
+                pcHolder="Select Calculator Type"
+                v-model="selectedCalc"
+                :optionTypes="calc_types"
+                label="Calculator Type"></app-input-dropdown>
+        </div>
         <span slot="footer" class="dialog-footer">
             <el-button @click="addTableModal = false">Cancel</el-button>
             <el-button type="primary" @click="addNewTable" v-loading="addingTableAjax">Add New</el-button>
@@ -55,3 +57,9 @@ export default {
 
 }
 </script>
+
+<style>
+.select_calc_type {
+    width: 50%;
+}
+</style>

@@ -397,13 +397,42 @@
                 <el-tab-pane label="Settings" name="third">
                     <div v-if="calcType=='mortgage_calculator'">
                         <el-row>
-                            <el-col :span="8">
-                                <label>Show Amortization Field</label>
-                                <el-switch
-                                v-model="amortizationtable"
-                                active-value="yes"
-                                inactive-value="no">
-                                </el-switch>
+                            <el-col :span="24">
+                                <app-input-switch
+                                    label="Show Amortization Field"
+                                    v-model="amortizationtable"></app-input-switch>
+                            </el-col>
+                            <el-col :span="12" class="select_cur_type">
+                                <app-input-dropdown
+                                    pcHolder="Select Currency Type"
+                                    v-model="selectedCurrency"
+                                    :optionTypes="currency_types"
+                                    label="Select Currency Type"
+                                    filterable=true></app-input-dropdown>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div v-if="calcType=='mortgage_refinance'">
+                        <el-row>
+                            <el-col :span="12" class="curc_type">
+                                <app-input-dropdown
+                                    pcHolder="Select Currency Type"
+                                    v-model="selectedCurrency"
+                                    :optionTypes="currency_types"
+                                    label="Select Currency Type"
+                                    filterable=true></app-input-dropdown>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div v-if="calcType=='mortgage_payment'">
+                        <el-row>
+                            <el-col :span="12" class="curc_type">
+                                <app-input-dropdown
+                                    pcHolder="Select Currency Type"
+                                    v-model="selectedCurrency"
+                                    :optionTypes="currency_types"
+                                    label="Select Currency Type"
+                                    filterable=true></app-input-dropdown>
                             </el-col>
                         </el-row>
                     </div>
@@ -413,19 +442,26 @@
 </template>
 
 <script>
+import InputDropdown from './ui/InputFields/_InputDropdown.vue';
+import InputSwitch from './ui/InputFields/_InputSwitch.vue';
 
 export default {
     name: 'tabs',
+    components: {
+        'app-input-dropdown': InputDropdown,
+        'app-input-switch': InputSwitch
+    },
     props: [
-            'calcType', 
-            'allMortCalcTable', 
-            'allRefinanceCalcTable', 
-            'allPaymentCalcTable', 
-            'allMortCalcDefVal',
-            'allRefinanceDefVal',
-            'allPaymentCalcTableDefVal',
-            'amortTable'
-           ],
+        'calcType', 
+        'allMortCalcTable', 
+        'allRefinanceCalcTable', 
+        'allPaymentCalcTable', 
+        'allMortCalcDefVal',
+        'allRefinanceDefVal',
+        'allPaymentCalcTableDefVal',
+        'amortTable',
+        'currencyType'
+    ],
     data() {
         return {
             activeName: 'first',
@@ -433,13 +469,36 @@ export default {
             acceptedValue: '',
             acceptedMortgageTermValue: '',
             acceptedAnnInt: '',
-            passed: ''
+            passed: '',
+            currency_types: [
+                { value: '$', label: 'USD (US$)' },
+                { value: '€', label: 'EUR (€)' },
+                { value: '¥', label: 'JPY (¥)' },
+                { value: '£', label: 'GBP (£)' }, 
+                { value: 'A$', label: 'AUD (A$)' },
+                { value: 'C$', label: 'CAD (C$)' },
+                { value: 'Fr', label: 'CHF (Fr)' },
+                { value: 'NZ$', label: 'NZD (NZ$)' },
+                { value: 'HK$', label: 'HKD (HK$)' },
+                { value: '₩', label: 'KRW (₩)' },
+                { value: '₺', label: 'TRY (₺)' },
+                { value: '₽', label: 'RUB (₽)' },
+                { value: '₹', label: 'INR (₹)' },
+                { value: 'R$', label: 'BRL (R$)'},
+                { value: 'R', label: 'ZAR (R)' },
+                { value: '৳', label: 'BDT (৳)' }, 
+                { value: '₪', label: 'ILS (₪)' },
+                { value: 'ரூ', label: 'LKR (ரூ)'}
+            ]
         }
     },
     methods: {
         handleClick(tab, event) {},
         updateAmort(value) {
             this.$emit('changedAmort', value);
+        },
+        updateCurrency(value) {
+            this.$emit('changedCurrency', value);
         }
     },
     created() {
@@ -464,6 +523,14 @@ export default {
             set(newValue) {
                 this.updateAmort(newValue);
             }
+        },
+        selectedCurrency: {
+            get() {
+                return this.currencyType
+            },
+            set(newValue) {
+                this.updateCurrency(newValue)
+            }
         }
     }
 }
@@ -486,5 +553,18 @@ export default {
             border-radius: 4px;
             box-sizing: border-box;
         }
+
+        .select_cur_type {
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .curc_type {
+                width: 100%;
+            }
+            .select_cur_type {
+                width: 100%;
+            }
+	    }   
     }
 </style>

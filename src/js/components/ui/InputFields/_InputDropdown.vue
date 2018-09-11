@@ -1,6 +1,6 @@
 <template>
     <div class="mortgageCalcInputDropdown">
-        <label>{{ label }}</label><br>
+        <label><strong>{{ label }}</strong></label><br>
         <el-select v-model="model" :placeholder="pcHolder" class="model_select" style="width: 100%;" :clearable="clearable">
             <el-option 
                 v-for="(type, i) in optionTypes"
@@ -22,13 +22,16 @@ export default {
             default: '',
         },
         optionTypes: {
-            default: ''
+            default: []
         },
         label: {
             default: ''
         },
         clearable: {
             default: ''
+        },
+        filterable: {
+            default: false
         }
     },
     computed: {
@@ -46,7 +49,6 @@ export default {
 
 <style lang="scss">
 .mortgageCalcInputDropdown {
-    width: 50%;
     .model_select {
         top: 5px;
     }

@@ -32,9 +32,9 @@
 				<el-input placeholder="Title" class="recipe_title" v-model="post_title"></el-input>
 			</div>
 			<div class="calc_preview_section">
-				<h2 v-if="calc_type==='mortgage_payment'">Mortgage Payment</h2>
+				<h2 v-if="calc_type==='mortgage_payment'">Mortgage Payment Calculator</h2>
 				<h2 v-if="calc_type==='mortgage_calculator'">Mortgage Calculator</h2>
-				<h2 v-if="calc_type==='mortgage_refinance'">Mortgage Refinance</h2>
+				<h2 v-if="calc_type==='mortgage_refinance'">Mortgage Refinance Calculator</h2>
 
 				<div class="change_type">
 					<el-select v-model="calc_type" placeholder="Calculator Type">
@@ -316,7 +316,9 @@
 					  :allRefinanceDefVal="all_refinance_calc_table_def_val"
 					  :allPaymentCalcTableDefVal="all_payment_calc_table_def_val"
 					  :amortTable="amort_res"
-					  @changedAmort="updateAmort"></app-tabs>
+					  :currencyType="currency_type"
+					  @changedAmort="updateAmort"
+					  @changedCurrency="updateCurrency"></app-tabs>
 		</el-col>
 	</el-row>
 </div>
@@ -339,6 +341,7 @@ export default {
 				tableConfig:'',
 				activeName: '',
 				amort_res: 'no',
+				currency_type: '',
 				ammortization_table: '',
 				MortgageCalConfig: {},
 				settings: {},
@@ -432,11 +435,10 @@ export default {
 				jQuery.get(ajaxurl, {
 					action: 'ninja_mortgage_ajax_actions',
 					route: 'get_table',
-					table_id: this.table_id,
-
+					table_id: this.table_id
 				}).then(
 					(response) => {
-						
+						console.log(response)
 						if(response.data.table_config.CalCulatorType) {
 							this.calc_type = response.data.table_config.CalCulatorType;
 						} else {
@@ -445,6 +447,7 @@ export default {
 						
 						this.post_title = response.data.table.post_title;
 						this.demo_url = response.data.demo_url;
+						this.currency_type = response.data.table_config.currency_type;
 
 						if(this.calc_type == 'mortgage_calculator' ) {
 							
@@ -519,7 +522,8 @@ export default {
 				this.updatedData = {
 					selectedLabel: selected_label ,
 					selectedDefault: selected_default,
-					settings: amort_table
+					settings: amort_table,
+					currency_type: this.currency_type
 				}
 
 				let updateTableAjaxData = {
@@ -531,6 +535,7 @@ export default {
 					calculator_type: this.calc_type
 				}
 				jQuery.post(ajaxurl, updateTableAjaxData).then(response => {
+					console.log(response)
                     this.$notify.success({
                         title: 'Updated',
                         message: response.data.message
@@ -557,7 +562,10 @@ export default {
 				else if(ammortization == 'no') {
 					this.ammortization_table = false;
 				}
-				
+			},
+			updateCurrency(currency) {
+				this.currency_type = currency;
+				console.log(this.currency_type)
 			},
             clipboardRender(){
                 var clipboard = new Clipboard('.copy_shortcode');
@@ -607,7 +615,7 @@ export default {
 	    padding-left: 24px;
         .table_action_btn {
             padding-top: 11px;
-            padding-right: 19px;
+            padding-right: 23px;
             .el-button--mini, .el-button--mini.is-round {
                 padding: 7px 15px; 
             }
@@ -652,7 +660,7 @@ export default {
 	}
 
 	.fields {
-		width: 67.83333%;
+		width: 67.6%;
 		.calc_title {
 			background: #fff;
 			margin-top: 18px;

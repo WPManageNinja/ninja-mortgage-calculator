@@ -6,26 +6,32 @@
         <div class="currentlyMonthlyPaymentSection"> 
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.currentlyMonthlyPayment ? "Currently Monthly Payment" : mortgageRefinanceLabel.currentlyMonthlyPayment }}</label><br />
-                <input type="number" min=0 id="current_monthly_payment" 
-                                   class="typeNumbers"
-                                   name="current_monthly_payment" 
-                                   :placeholder="getCurrentlyPayment(mortgageRefinanceLabel.currentlyMonthlyPayment)"
-                                   v-model="current_monthly_payment"
-                                   v-validate="'required'"
-                                :class="{'error': errors.has('current_monthly_payment') }">
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 id="current_monthly_payment" 
+                        class="typeNumbers"
+                        name="current_monthly_payment" 
+                        :placeholder="getCurrentlyPayment(mortgageRefinanceLabel.currentlyMonthlyPayment)"
+                        v-model="current_monthly_payment"
+                        v-validate="'required'"
+                        :class="{'error': errors.has('current_monthly_payment') }">
+                </div>
                 <span v-if="errors.has('current_monthly_payment')" style="color: red;">
                     Current loan interest rate field is required
                 </span>
             </div>
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.loanIntRate ? "Current Loan Interest Rate" : mortgageRefinanceLabel.loanIntRate }}</label><br />
-                <input type="number" min=0 id="current_loan_interest_rate"
-                                   class="typeNumbers" 
-                                   name="current_loan_interest_rate" 
-                                   :placeholder="getCurrentLoanRate(mortgageRefinanceLabel.loanIntRate)"
-                                   v-model="current_loan_interest_rate"
-                                   v-validate="'required'"
-                                   :class="{'error': errors.has('current_loan_interest_rate') }">
+                <div class="inp_fields">
+                    <span class="percentage">%</span>
+                    <input type="number" min=0 id="current_loan_interest_rate"
+                            class="typeNumbers" 
+                            name="current_loan_interest_rate" 
+                            :placeholder="getCurrentLoanRate(mortgageRefinanceLabel.loanIntRate)"
+                            v-model="current_loan_interest_rate"
+                            v-validate="'required'"
+                            :class="{'error': errors.has('current_loan_interest_rate') }">
+                </div>
                 <span v-if="errors.has('current_loan_interest_rate')" style="color: red;">
                     Current loan interest rate field is required
                 </span>
@@ -35,26 +41,32 @@
         <div class="balanceleftonMortgageSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.balanceMortgage ? "Balance Left on Mortgage" : mortgageRefinanceLabel.balanceMortgage }}</label><br />
-                <input type="number" min=0 id="balance" 
-                                     name="balance" 
-                                     class="typeNumbers" 
-                                     :placeholder="getBalanceMortgage(mortgageRefinanceLabel.balanceMortgage)"
-                                     v-model="balance"
-                                     v-validate="'required'"
-                                     :class="{'error': errors.has('balance') }">
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 id="balance" 
+                        name="balance" 
+                        class="typeNumbers" 
+                        :placeholder="getBalanceMortgage(mortgageRefinanceLabel.balanceMortgage)"
+                        v-model="balance"
+                        v-validate="'required'"
+                        :class="{'error': errors.has('balance') }">
+                </div>
                 <span v-if="errors.has('balance')" style="color: red;">
                     Balance field is required
                 </span>
             </div>
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.newIntRate ? "New Interest Rate" : mortgageRefinanceLabel.newIntRate }}</label><br />
-                <input type="number" min=0 id="new_interest_rate"
-                                    class="typeNumbers" 
-                                    name="new_interest_rate" 
-                                    :placeholder="getNewIntRate(mortgageRefinanceLabel.newIntRate)"
-                                    v-model="new_interest_rate"
-                                    v-validate="'required'"
-                                    :class="{'error': errors.has('new_interest_rate') }">
+                <div class="inp_fields">
+                    <span class="percentage">%</span>
+                    <input type="number" min=0 id="new_interest_rate"
+                        class="typeNumbers" 
+                        name="new_interest_rate" 
+                        :placeholder="getNewIntRate(mortgageRefinanceLabel.newIntRate)"
+                        v-model="new_interest_rate"
+                        v-validate="'required'"
+                        :class="{'error': errors.has('new_interest_rate') }">
+                </div>
                 <span v-if="errors.has('new_interest_rate')" style="color: red;">
                     New interest rate field is required
                 </span>
@@ -65,26 +77,32 @@
         <div class="remainingLoanTermSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.remainingLoanTerm ? "Remaining Loan Term" : mortgageRefinanceLabel.remainingLoanTerm }}</label><br />
-                <input type="number" min=0 id="remaining_loan_term" 
-                                     name="remaining_loan_term" 
-                                     class="typeNumbers" 
-                                     :placeholder="getRemainingLoan(mortgageRefinanceLabel.remainingLoanTerm)"
-                                     v-model="remaining_loan_term"
-                                     v-validate="'required'"
-                                     :class="{'error': errors.has('remaining_loan_term') }">
+                <div class="inp_fields">
+                    <span class="years_icon">years</span>
+                    <input type="number" min=0 id="remaining_loan_term" 
+                        name="remaining_loan_term" 
+                        class="typeNumbers" 
+                        :placeholder="getRemainingLoan(mortgageRefinanceLabel.remainingLoanTerm)"
+                        v-model="remaining_loan_term"
+                        v-validate="'required'"
+                        :class="{'error': errors.has('remaining_loan_term') }">
+                </div>
                 <span v-if="errors.has('remaining_loan_term')" style="color: red;">
                     Remaining Loan Term field is required
                 </span>
             </div>
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.newLoanTerm ? "New Loan Term" : mortgageRefinanceLabel.newLoanTerm }}</label><br />
-                <input type="number" min=0 id="new_loan_term"
-                                    class="typeNumbers" 
-                                    name="new_loan_term" 
-                                    :placeholder="getNewLoanTerm(mortgageRefinanceLabel.newLoanTerm)"
-                                    v-model="new_loan_term"
-                                    v-validate="'required'"
-                                    :class="{'error': errors.has('new_loan_term') }">
+                <div class="inp_fields">
+                    <span class="years_icon">years</span>
+                    <input type="number" min=0 id="new_loan_term"
+                        class="typeNumbers" 
+                        name="new_loan_term" 
+                        :placeholder="getNewLoanTerm(mortgageRefinanceLabel.newLoanTerm)"
+                        v-model="new_loan_term"
+                        v-validate="'required'"
+                        :class="{'error': errors.has('new_loan_term') }">
+                </div>
                 <span v-if="errors.has('new_loan_term')" style="color: red;">
                     New loan term field is required
                 </span>
@@ -103,80 +121,113 @@
                        v-validate="'required'" class="typeNumbers">
             </div>
             <div class="costPoint">
-                <p> <b>Costs of points: {{ pointsResult }}</b> </p>
+                <p> <b>Costs of points: {{currencyType}} {{ pointsResult }}</b> </p>
             </div>
         </div> 
 
         <div class="feeSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.applicationFee ? "Application Fee" : mortgageRefinanceLabel.applicationFee }}</label>
-                <input type="number" min=0 name="application_fee"
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 name="application_fee"
                        id="application_fee" v-model="application_fee" :placeholder="getApplicationFee(mortgageRefinanceLabel.applicationFee)" class="typeNumbers">
+                </div>
             </div>
             <div class="common">
                 <label>{{ mortgageRefinanceLabel.creditCheck }}</label>
-                <input type="number" :placeholder="getCreditCheck(mortgageRefinanceLabel.creditCheck)" v-model="credit_check" 
-                       min=0 id="credit_check" name="credit_check" class="typeNumbers"></el-input>
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" :placeholder="getCreditCheck(mortgageRefinanceLabel.creditCheck)" v-model="credit_check" min=0 id="credit_check" name="credit_check" class="typeNumbers">
+                </div>
             </div>
         </div>
 
         <div class="feeSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.attorneyFeeYours ? "Attorney's Fee(yours)" : mortgageRefinanceLabel.attorneyFeeYours }}</label>
-                <input type="number" min=0 name="attorney_fee_yours"
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 name="attorney_fee_yours"
                        id="attorney_fee_yours" v-model="attorney_fee_yours" :placeholder="getAnthonyYours(mortgageRefinanceLabel.attorneyFeeYours)" class="typeNumbers">
+                </div>
             </div>
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.attorneyFeeLenders ? "Attorney's Fee(lenders)" : mortgageRefinanceLabel.attorneyFeeLenders }}</label>
-                <input type="number" :placeholder="getAnthonyLenders(mortgageRefinanceLabel.attorneyFeeLenders)" v-model="attorney_fee_lenders" 
-                       min=0 id="attorney_fee_lenders" name="attorney_fee_lenders" class="typeNumbers"></el-input>
+                
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" :placeholder="getAnthonyLenders(mortgageRefinanceLabel.attorneyFeeLenders)" v-model="attorney_fee_lenders" 
+                       min=0 id="attorney_fee_lenders" name="attorney_fee_lenders" class="typeNumbers">
+                </div>
             </div>
         </div>
 
         <div class="feeSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.titleSearch ? "Title Search" : mortgageRefinanceLabel.titleSearch }}</label>
-                <input type="number" min=0 name="title_search"
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 name="title_search"
                        id="title_search" v-model="title_search" :placeholder="getTitleSearch(mortgageRefinanceLabel.titleSearch)" class="typeNumbers">
+                </div>
             </div>
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.titleInsurance ? "Title Insurance" : mortgageRefinanceLabel.titleInsurance }}</label>
-                <input type="number" :placeholder="getTitleInsurance(mortgageRefinanceLabel.titleInsurance)" v-model="title_insurance" 
-                       min=0 id="title_insurance" name="title_insurance" class="typeNumbers"></el-input>
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" :placeholder="getTitleInsurance(mortgageRefinanceLabel.titleInsurance)" v-model="title_insurance" 
+                       min=0 id="title_insurance" name="title_insurance" class="typeNumbers">
+                </div>
             </div>
         </div>
 
         <div class="feeSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.appraisalFee ? "Appraisal Fee" : mortgageRefinanceLabel.appraisalFee }}</label>
-                <input type="number" min=0 name="appraisal_fee"
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 name="appraisal_fee"
                        id="appraisal_fee" v-model="appraisal_fee" :placeholder="getAppraisalFee(mortgageRefinanceLabel.appraisalFee)" class="typeNumbers">
+                </div>
             </div>
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.inspections ? "Inspections" : mortgageRefinanceLabel.inspections }}</label>
-                <input type="number" :placeholder="getInspections(mortgageRefinanceLabel.inspections)" v-model="inspections" 
-                       min=0 id="inspections" name="inspections" class="typeNumbers"></el-input>
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" :placeholder="getInspections(mortgageRefinanceLabel.inspections)" v-model="inspections" 
+                       min=0 id="inspections" name="inspections" class="typeNumbers">
+                </div>
             </div>
         </div>
 
         <div class="feeSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.localFees ? "Local Fees" : mortgageRefinanceLabel.localFees }}</label>
-                <input type="number" min=0 name="local_fees"
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 name="local_fees"
                        id="local_fees" v-model="local_fees" :placeholder="getLocalFees(mortgageRefinanceLabel.localFees)" class="typeNumbers">
+                </div>
             </div>
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.documentPreparation ? "Document Preparation" : mortgageRefinanceLabel.documentPreparation }}</label>
-                <input type="number" :placeholder="getDocumentPreparation(mortgageRefinanceLabel.documentPreparation)" v-model="document_preparation" 
-                       min=0 id="document_preparation" name="document_preparation" class="typeNumbers"></el-input>
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" :placeholder="getDocumentPreparation(mortgageRefinanceLabel.documentPreparation)" v-model="document_preparation" 
+                       min=0 id="document_preparation" name="document_preparation" class="typeNumbers">
+                </div>
             </div>
         </div>
 
         <div class="feeSection">
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.other ? "Other" : mortgageRefinanceLabel.other }}</label>
-                <input type="number" min=0 name="other"
+                <div class="inp_fields">
+                    <span class="currency_icon">{{currencyType}}</span>
+                    <input type="number" min=0 name="other"
                        id="other" v-model="other" :placeholder="getOther(mortgageRefinanceLabel.other)" class="typeNumbers">
+                </div>
             </div>
         </div>
 
@@ -187,11 +238,11 @@
         <!-- All Cost Section -->
         <div class="costs_section">
             <p><b>New Monthly Pament</b></p>
-            <h1><span>$</span>{{ monthly_payment.toFixed(2) }}</h1>
-            <p><b>Monthly Savings</b>: ${{ monthly_savings.toFixed(2) }}</p>
-            <p><b>Difference in Interest</b>: ${{ diff_in_interest.toFixed(2) }}</p>
-            <p><b>Total cost</b>: ${{ total_cost.toFixed(2) }}</p>
-            <p><b>Months to recoup costs</b>: ${{ months_rec_costs.toFixed(2) }}</p>
+            <h1><span>{{currencyType}}</span> {{ monthly_payment.toFixed(2) }}</h1>
+            <p><b>Monthly Savings</b>: {{currencyType}} {{ monthly_savings.toFixed(2) }}</p>
+            <p><b>Difference in Interest</b>: {{currencyType}} {{ diff_in_interest.toFixed(2) }}</p>
+            <p><b>Total cost</b>: {{currencyType}} {{ total_cost.toFixed(2) }}</p>
+            <p><b>Months to recoup costs</b>: {{currencyType}} {{ months_rec_costs.toFixed(2) }}</p>
         </div>
         <!-- End Cost Section -->
     </div>
@@ -202,7 +253,8 @@ export default {
     props: [
         'tableTitle',
         'mortgageRefinanceLabel',
-        'mortgageRefinanceDef'
+        'mortgageRefinanceDef',
+        'currencyType'
     ],
     data() {
         return {
