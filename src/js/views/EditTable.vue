@@ -660,7 +660,7 @@ export default {
 	}
 
 	.fields {
-		width: 67.6%;
+		width: 67.3%;
 		.calc_title {
 			background: #fff;
 			margin-top: 18px;
