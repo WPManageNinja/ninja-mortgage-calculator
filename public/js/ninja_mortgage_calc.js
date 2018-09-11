@@ -28658,9 +28658,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         clearable: {
             default: ''
-        },
-        filterable: {
-            default: false
         }
     },
     computed: {
@@ -29905,7 +29902,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.ninja_mortgage_tabs .el-tabs {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.ninja_mortgage_tabs .error {\n  border-color: red;\n  padding: 0px;\n}\n.ninja_mortgage_tabs .typeNumber {\n  width: 100%;\n  padding: 3px 0px;\n  border-radius: 4px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.ninja_mortgage_tabs .select_cur_type {\n  margin-top: 10px;\n}\n@media (max-width: 600px) {\n.ninja_mortgage_tabs .curc_type {\n    width: 100%;\n}\n.ninja_mortgage_tabs .select_cur_type {\n    width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\n.ninja_mortgage_tabs .el-tabs {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.ninja_mortgage_tabs .error {\n  border-color: red;\n  padding: 0px;\n}\n.ninja_mortgage_tabs .typeNumber {\n  width: 100%;\n  padding: 3px 0px;\n  border-radius: 4px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.ninja_mortgage_tabs .select_cur_type {\n  margin-top: 10px;\n}\n.ninja_mortgage_tabs input {\n  background-color: #fff;\n}\n@media (max-width: 600px) {\n.ninja_mortgage_tabs .curc_type {\n    width: 100%;\n}\n.ninja_mortgage_tabs .select_cur_type {\n    width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -29916,10 +29913,8 @@ exports.push([module.i, "\n.ninja_mortgage_tabs .el-tabs {\n  -webkit-box-shadow
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputDropdown_vue__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputDropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputDropdown_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_InputFields_InputSwitch_vue__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_InputFields_InputSwitch_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ui_InputFields_InputSwitch_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputSwitch_vue__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputSwitch_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputSwitch_vue__);
 //
 //
 //
@@ -30363,15 +30358,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'tabs',
     components: {
-        'app-input-dropdown': __WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputDropdown_vue___default.a,
-        'app-input-switch': __WEBPACK_IMPORTED_MODULE_1__ui_InputFields_InputSwitch_vue___default.a
+        'app-input-switch': __WEBPACK_IMPORTED_MODULE_0__ui_InputFields_InputSwitch_vue___default.a
     },
     props: ['calcType', 'allMortCalcTable', 'allRefinanceCalcTable', 'allPaymentCalcTable', 'allMortCalcDefVal', 'allRefinanceDefVal', 'allPaymentCalcTableDefVal', 'amortTable', 'currencyType'],
     data: function data() {
@@ -30432,201 +30432,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(115)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(117)
-/* template */
-var __vue_template__ = __webpack_require__(118)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/js/components/ui/InputFields/_InputDropdown.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-32be7e47", Component.options)
-  } else {
-    hotAPI.reload("data-v-32be7e47", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(116);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(9)("5cbd4776", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-32be7e47\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./_InputDropdown.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-32be7e47\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./_InputDropdown.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.mortgageCalcInputDropdown .model_select {\n  top: 5px;\n}\n.mortgageCalcInputDropdown input {\n  background-color: #fff;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 117 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'InputDropdown',
-    props: {
-        value: {
-            default: ''
-        },
-        pcHolder: {
-            default: ''
-        },
-        optionTypes: {
-            default: []
-        },
-        label: {
-            default: ''
-        },
-        clearable: {
-            default: ''
-        },
-        filterable: {
-            default: false
-        }
-    },
-    computed: {
-        model: {
-            get: function get() {
-                return this.value;
-            },
-            set: function set(newValue) {
-                this.$emit('input', newValue);
-            }
-        }
-    }
-});
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "mortgageCalcInputDropdown" },
-    [
-      _c("label", [_c("strong", [_vm._v(_vm._s(_vm.label))])]),
-      _c("br"),
-      _vm._v(" "),
-      _c(
-        "el-select",
-        {
-          staticClass: "model_select",
-          staticStyle: { width: "100%" },
-          attrs: { placeholder: _vm.pcHolder, clearable: _vm.clearable },
-          model: {
-            value: _vm.model,
-            callback: function($$v) {
-              _vm.model = $$v
-            },
-            expression: "model"
-          }
-        },
-        _vm._l(_vm.optionTypes, function(type, i) {
-          return _c("el-option", {
-            key: i,
-            attrs: { label: type.label, value: type.value }
-          })
-        })
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-32be7e47", module.exports)
-  }
-}
-
-/***/ }),
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
 /* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32931,21 +32741,35 @@ var render = function() {
                             attrs: { span: 12 }
                           },
                           [
-                            _c("app-input-dropdown", {
-                              attrs: {
-                                pcHolder: "Select Currency Type",
-                                optionTypes: _vm.currency_types,
-                                label: "Select Currency Type",
-                                filterable: "true"
+                            _c("label", [
+                              _c("strong", [_vm._v("Select Currency Type")])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "el-select",
+                              {
+                                staticClass: "model_select",
+                                staticStyle: { width: "100%" },
+                                attrs: { placeholder: "Select Currency Type" },
+                                model: {
+                                  value: _vm.selectedCurrency,
+                                  callback: function($$v) {
+                                    _vm.selectedCurrency = $$v
+                                  },
+                                  expression: "selectedCurrency"
+                                }
                               },
-                              model: {
-                                value: _vm.selectedCurrency,
-                                callback: function($$v) {
-                                  _vm.selectedCurrency = $$v
-                                },
-                                expression: "selectedCurrency"
-                              }
-                            })
+                              _vm._l(_vm.currency_types, function(type, i) {
+                                return _c("el-option", {
+                                  key: i,
+                                  attrs: {
+                                    label: type.label,
+                                    value: type.value
+                                  }
+                                })
+                              })
+                            )
                           ],
                           1
                         )
@@ -32968,21 +32792,30 @@ var render = function() {
                           "el-col",
                           { staticClass: "curc_type", attrs: { span: 12 } },
                           [
-                            _c("app-input-dropdown", {
-                              attrs: {
-                                pcHolder: "Select Currency Type",
-                                optionTypes: _vm.currency_types,
-                                label: "Select Currency Type",
-                                filterable: "true"
+                            _c(
+                              "el-select",
+                              {
+                                staticClass: "model_select",
+                                staticStyle: { width: "100%" },
+                                attrs: { placeholder: "Select Currency Type" },
+                                model: {
+                                  value: _vm.selectedCurrency,
+                                  callback: function($$v) {
+                                    _vm.selectedCurrency = $$v
+                                  },
+                                  expression: "selectedCurrency"
+                                }
                               },
-                              model: {
-                                value: _vm.selectedCurrency,
-                                callback: function($$v) {
-                                  _vm.selectedCurrency = $$v
-                                },
-                                expression: "selectedCurrency"
-                              }
-                            })
+                              _vm._l(_vm.currency_types, function(type, i) {
+                                return _c("el-option", {
+                                  key: i,
+                                  attrs: {
+                                    label: type.label,
+                                    value: type.value
+                                  }
+                                })
+                              })
+                            )
                           ],
                           1
                         )
@@ -33005,21 +32838,35 @@ var render = function() {
                           "el-col",
                           { staticClass: "curc_type", attrs: { span: 12 } },
                           [
-                            _c("app-input-dropdown", {
-                              attrs: {
-                                pcHolder: "Select Currency Type",
-                                optionTypes: _vm.currency_types,
-                                label: "Select Currency Type",
-                                filterable: "true"
+                            _c("label", [
+                              _c("strong", [_vm._v("Select Currency Type")])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "el-select",
+                              {
+                                staticClass: "model_select",
+                                staticStyle: { width: "100%" },
+                                attrs: { placeholder: "Select Currency Type" },
+                                model: {
+                                  value: _vm.selectedCurrency,
+                                  callback: function($$v) {
+                                    _vm.selectedCurrency = $$v
+                                  },
+                                  expression: "selectedCurrency"
+                                }
                               },
-                              model: {
-                                value: _vm.selectedCurrency,
-                                callback: function($$v) {
-                                  _vm.selectedCurrency = $$v
-                                },
-                                expression: "selectedCurrency"
-                              }
-                            })
+                              _vm._l(_vm.currency_types, function(type, i) {
+                                return _c("el-option", {
+                                  key: i,
+                                  attrs: {
+                                    label: type.label,
+                                    value: type.value
+                                  }
+                                })
+                              })
+                            )
                           ],
                           1
                         )

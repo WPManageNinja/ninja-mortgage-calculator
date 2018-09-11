@@ -29,9 +29,6 @@ export default {
         },
         clearable: {
             default: ''
-        },
-        filterable: {
-            default: false
         }
     },
     computed: {

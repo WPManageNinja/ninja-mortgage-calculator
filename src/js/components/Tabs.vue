@@ -403,36 +403,43 @@
                                     v-model="amortizationtable"></app-input-switch>
                             </el-col>
                             <el-col :span="12" class="select_cur_type">
-                                <app-input-dropdown
-                                    pcHolder="Select Currency Type"
-                                    v-model="selectedCurrency"
-                                    :optionTypes="currency_types"
-                                    label="Select Currency Type"
-                                    filterable=true></app-input-dropdown>
+
+                            <label><strong>Select Currency Type</strong></label><br>
+                            <el-select v-model="selectedCurrency" placeholder="Select Currency Type" class="model_select" style="width: 100%;">
+                                <el-option 
+                                    v-for="(type, i) in currency_types"
+                                    :key="i"
+                                    :label="type.label"
+                                    :value="type.value"></el-option>
+                            </el-select> 
                             </el-col>
                         </el-row>
                     </div>
                     <div v-if="calcType=='mortgage_refinance'">
                         <el-row>
                             <el-col :span="12" class="curc_type">
-                                <app-input-dropdown
-                                    pcHolder="Select Currency Type"
-                                    v-model="selectedCurrency"
-                                    :optionTypes="currency_types"
-                                    label="Select Currency Type"
-                                    filterable=true></app-input-dropdown>
+                                <el-select v-model="selectedCurrency" placeholder="Select Currency Type" class="model_select" style="width: 100%;">
+                                    <el-option 
+                                        v-for="(type, i) in currency_types"
+                                        :key="i"
+                                        :label="type.label"
+                                        :value="type.value"></el-option>
+                                </el-select>
                             </el-col>
                         </el-row>
-                    </div>
+                    </div> 
                     <div v-if="calcType=='mortgage_payment'">
                         <el-row>
                             <el-col :span="12" class="curc_type">
-                                <app-input-dropdown
-                                    pcHolder="Select Currency Type"
-                                    v-model="selectedCurrency"
-                                    :optionTypes="currency_types"
-                                    label="Select Currency Type"
-                                    filterable=true></app-input-dropdown>
+
+                                <label><strong>Select Currency Type</strong></label><br>
+                                <el-select v-model="selectedCurrency" placeholder="Select Currency Type" class="model_select" style="width: 100%;">
+                                    <el-option 
+                                        v-for="(type, i) in currency_types"
+                                        :key="i"
+                                        :label="type.label"
+                                        :value="type.value"></el-option>
+                                </el-select>
                             </el-col>
                         </el-row>
                     </div>
@@ -442,13 +449,11 @@
 </template>
 
 <script>
-import InputDropdown from './ui/InputFields/_InputDropdown.vue';
 import InputSwitch from './ui/InputFields/_InputSwitch.vue';
 
 export default {
     name: 'tabs',
     components: {
-        'app-input-dropdown': InputDropdown,
         'app-input-switch': InputSwitch
     },
     props: [
@@ -556,6 +561,10 @@ export default {
 
         .select_cur_type {
             margin-top: 10px;
+        }
+
+        input {
+            background-color: #fff;
         }
 
         @media (max-width: 600px) {
