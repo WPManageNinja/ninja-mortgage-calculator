@@ -5,25 +5,25 @@
                     <div v-if="calcType=='mortgage_calculator'">
                         <el-row>
                             <el-col :span="24">
-                                <label>Loan Amount</label>
+                                <label>Loan Amount ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input v-model="allMortCalcTable.loanAmount" type="text"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Down Pament</label>
+                                <label>Down Pament ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input v-model="allMortCalcTable.downPament" type="text"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Mortgage Term Years</label>
+                                <label>Mortgage Term /Year</label>
                                 <el-input v-model="allMortCalcTable.mortgageTerm" type="text"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Annual Interest Rate</label>
+                                <label>Annual Interest Rate (%)</label>
                                 <el-input v-model="allMortCalcTable.annualInterestRate" type="text"></el-input>
                             </el-col>
                         </el-row>
@@ -32,37 +32,37 @@
                     <div v-if="calcType=='mortgage_refinance'">
                         <el-row>
                             <el-col :span="24">
-                                <label>Currently Monthly Payment</label>
+                                <label>Currently Monthly Payment ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.currentlyMonthlyPayment"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Current Loan interest rate</label>
+                                <label>Current Loan interest rate (%)</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.loanIntRate"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Balance left on mortgage</label>
+                                <label>Balance left on mortgage ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.balanceMortgage"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>New Interest Rate</label>
+                                <label>New Interest Rate (%)</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.newIntRate"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Remaining Loan Term </label>
+                                <label>Remaining Loan Term /Year</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.remainingLoanTerm"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>New Loan Term </label>
+                                <label>New Loan Term /Year</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.newLoanTerm"></el-input>
                             </el-col>
                         </el-row>
@@ -79,67 +79,67 @@
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Application Fee</label>
+                                <label>Application Fee ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.applicationFee"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Credit Check</label>
+                                <label>Credit Check ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.creditCheck"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Attorney's fee (yours)</label>
+                                <label>Attorney's fee (yours) ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.attorneyFeeYours"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Attorney's fee (lenders)</label>
+                                <label>Attorney's fee (lenders) ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.attorneyFeeLenders"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Title Search</label>
+                                <label>Title Search ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.titleSearch"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Title Insurance</label>
+                                <label>Title Insurance ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.titleInsurance"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Appraisal Fee</label>
+                                <label>Appraisal Fee ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.appraisalFee"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Inspections</label>
+                                <label>Inspections ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.inspections"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Local fees (taxes, transfers)</label>
+                                <label>Local fees (taxes, transfers) ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.localFees"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Document preparation</label>
+                                <label>Document preparation ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.documentPreparation"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Other</label>
+                                <label>Other ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceCalcTable.other"></el-input>
                             </el-col>
                         </el-row>
@@ -148,31 +148,31 @@
                     <div v-if="calcType=='mortgage_payment'">
                         <el-row>
                             <el-col :span="24">
-                                <label>Mortgage Amount</label>
+                                <label>Mortgage Amount ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allPaymentCalcTable.mortgageAmount"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Term in Years</label>
+                                <label>Term in Year</label>
                                 <el-input type="text" v-model="allPaymentCalcTable.termInYears"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Interest Rate</label>
+                                <label>Interest Rate (%)</label>
                                 <el-input type="text" v-model="allPaymentCalcTable.interestRate"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Annual Property Taxes</label>
+                                <label>Annual Property Taxes ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allPaymentCalcTable.annualPropertyTaxes"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>Annual Home Insurance</label>
+                                <label>Annual Home Insurance ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allPaymentCalcTable.annualHomeInsurance"></el-input>
                             </el-col>
                         </el-row>
@@ -184,7 +184,7 @@
                     <div v-if="calcType=='mortgage_calculator'">
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allMortCalcTable.loanAmount ? "Loan Amount" : allMortCalcTable.loanAmount }}</label>
+                                <label>{{ !allMortCalcTable.loanAmount ? "Loan Amount" : allMortCalcTable.loanAmount }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="number" min=0 
                                           name="loanAmountDefVal"
                                           class="typeNumber"
@@ -200,7 +200,7 @@
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allMortCalcTable.downPament ? "Down Payment" : allMortCalcTable.downPament }}</label>
+                                <label>{{ !allMortCalcTable.downPament ? "Down Payment" : allMortCalcTable.downPament }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="number" min=0 
                                           name="downPamentDefVal"
                                           class="typeNumber"
@@ -210,7 +210,7 @@
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allMortCalcTable.mortgageTerm ? "Mortgage Term" : allMortCalcTable.mortgageTerm }}</label>
+                                <label>{{ !allMortCalcTable.mortgageTerm ? "Mortgage Term" : allMortCalcTable.mortgageTerm }} /Year</label>
                                 <el-input type="number" min=0 
                                           class="typeNumber"
                                           v-model="allMortCalcDefVal.mortgageTermDefVal"
@@ -226,7 +226,7 @@
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allMortCalcTable.annualInterestRate ? "Annual Interest Rate" : allMortCalcTable.annualInterestRate }}</label>
+                                <label>{{ !allMortCalcTable.annualInterestRate ? "Annual Interest Rate" : allMortCalcTable.annualInterestRate }} (%)</label>
                                 <el-input type="number" min=0 
                                           class="typeNumber"
                                           v-model="allMortCalcDefVal.annualInterestRateDefVal"
@@ -246,37 +246,37 @@
                     <div v-if="calcType=='mortgage_refinance'">
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.currentlyMonthlyPayment ? "Currently Monthly Payment" : allRefinanceCalcTable.currentlyMonthlyPayment }}</label>
+                                <label>{{ !allRefinanceCalcTable.currentlyMonthlyPayment ? "Currently Monthly Payment" : allRefinanceCalcTable.currentlyMonthlyPayment }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.currentlyMonthlyPaymentDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.loanIntRate ? "Loan Interest Rate" : allRefinanceCalcTable.loanIntRate }}</label>
+                                <label>{{ !allRefinanceCalcTable.loanIntRate ? "Loan Interest Rate" : allRefinanceCalcTable.loanIntRate }} (%)</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.loanIntRateDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.balanceMortgage ? "Balance left on mortgage" : allRefinanceCalcTable.balanceMortgage }}</label>
+                                <label>{{ !allRefinanceCalcTable.balanceMortgage ? "Balance left on mortgage" : allRefinanceCalcTable.balanceMortgage }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.balanceMortgageDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.newIntRate ? "New Interest Rate" : allRefinanceCalcTable.newIntRate }}</label>
+                                <label>{{ !allRefinanceCalcTable.newIntRate ? "New Interest Rate" : allRefinanceCalcTable.newIntRate }} (%)</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.newIntRateDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.remainingLoanTerm ? "Remaining Loan Term" : allRefinanceCalcTable.remainingLoanTerm }}</label>
+                                <label>{{ !allRefinanceCalcTable.remainingLoanTerm ? "Remaining Loan Term" : allRefinanceCalcTable.remainingLoanTerm }} /Year</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.remainingLoanTermDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.newLoanTerm ? "New Loan Term" : allRefinanceCalcTable.newLoanTerm }}</label>
+                                <label>{{ !allRefinanceCalcTable.newLoanTerm ? "New Loan Term" : allRefinanceCalcTable.newLoanTerm }} /Year</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.newLoanTermDefVal"></el-input>
                             </el-col>
                         </el-row>
@@ -293,67 +293,67 @@
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.applicationFee ? "Application Fee" : allRefinanceCalcTable.applicationFee }}</label>
+                                <label>{{ !allRefinanceCalcTable.applicationFee ? "Application Fee" : allRefinanceCalcTable.applicationFee }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.applicationFeeDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.creditCheck ? "Credit Check" : allRefinanceCalcTable.creditCheck }}</label>
+                                <label>{{ !allRefinanceCalcTable.creditCheck ? "Credit Check" : allRefinanceCalcTable.creditCheck }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.creditCheckDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.attorneyFeeYours ? "Attorney's fee (yours)" : allRefinanceCalcTable.attorneyFeeYours }}</label>
+                                <label>{{ !allRefinanceCalcTable.attorneyFeeYours ? "Attorney's fee (yours)" : allRefinanceCalcTable.attorneyFeeYours }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.attorneyFeeYoursDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.attorneyFeeLenders ? "Attorney's Fee(lenders)" : allRefinanceCalcTable.attorneyFeeLenders }}</label>
+                                <label>{{ !allRefinanceCalcTable.attorneyFeeLenders ? "Attorney's Fee(lenders)" : allRefinanceCalcTable.attorneyFeeLenders }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.attorneyFeeLendersDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.titleSearch ? "Title Search" : allRefinanceCalcTable.titleSearch }}</label>
+                                <label>{{ !allRefinanceCalcTable.titleSearch ? "Title Search" : allRefinanceCalcTable.titleSearch }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.titleSearchDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.titleInsurance ? "Title Insurance" : allRefinanceCalcTable.titleInsurance }}</label>
+                                <label>{{ !allRefinanceCalcTable.titleInsurance ? "Title Insurance" : allRefinanceCalcTable.titleInsurance }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.titleInsuranceDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.appraisalFee ? "Appraisal Fee" : allRefinanceCalcTable.appraisalFee }}</label>
+                                <label>{{ !allRefinanceCalcTable.appraisalFee ? "Appraisal Fee" : allRefinanceCalcTable.appraisalFee }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.appraisalFeeDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.inspections ? "Inspections" : allRefinanceCalcTable.inspections }}</label>
+                                <label>{{ !allRefinanceCalcTable.inspections ? "Inspections" : allRefinanceCalcTable.inspections }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.inspectionsDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.localFees ? "Local Fees" : allRefinanceCalcTable.localFees }}</label>
+                                <label>{{ !allRefinanceCalcTable.localFees ? "Local Fees" : allRefinanceCalcTable.localFees }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.localFeesDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.documentPreparation ? "Document Preparation" : allRefinanceCalcTable.documentPreparation }}</label>
+                                <label>{{ !allRefinanceCalcTable.documentPreparation ? "Document Preparation" : allRefinanceCalcTable.documentPreparation }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.documentPreparationDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allRefinanceCalcTable.other ? "Other" : allRefinanceCalcTable.other }}</label>
+                                <label>{{ !allRefinanceCalcTable.other ? "Other" : allRefinanceCalcTable.other }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allRefinanceDefVal.otherDefVal"></el-input>
                             </el-col>
                         </el-row>
@@ -363,31 +363,31 @@
                     <div v-if="calcType=='mortgage_payment'">
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allPaymentCalcTable.mortgageAmount ? "Mortgage Amount" : allPaymentCalcTable.mortgageAmount }}</label>
+                                <label>{{ !allPaymentCalcTable.mortgageAmount ? "Mortgage Amount" : allPaymentCalcTable.mortgageAmount }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allPaymentCalcTableDefVal.mortgageAmountDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allPaymentCalcTable.termInYears ? "Term in Years" : allPaymentCalcTable.termInYears }}</label>
+                                <label>{{ !allPaymentCalcTable.termInYears ? "Term in Year" : allPaymentCalcTable.termInYears }}</label>
                                 <el-input type="text" v-model="allPaymentCalcTableDefVal.termInYearsDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allPaymentCalcTable.interestRate ? "Interest Rate" : allPaymentCalcTable.interestRate }}</label>
+                                <label>{{ !allPaymentCalcTable.interestRate ? "Interest Rate" : allPaymentCalcTable.interestRate }} (%)</label>
                                 <el-input type="text" v-model="allPaymentCalcTableDefVal.interestRateDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allPaymentCalcTable.annualPropertyTaxes ? "Annual Property Taxes" : allPaymentCalcTable.annualPropertyTaxes }}</label>
+                                <label>{{ !allPaymentCalcTable.annualPropertyTaxes ? "Annual Property Taxes" : allPaymentCalcTable.annualPropertyTaxes }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allPaymentCalcTableDefVal.annualPropertyTaxesDefVal"></el-input>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="24">
-                                <label>{{ !allPaymentCalcTable.annualHomeInsurance ? "Annual Home Insurance" : allPaymentCalcTable.annualHomeInsurance }}</label>
+                                <label>{{ !allPaymentCalcTable.annualHomeInsurance ? "Annual Home Insurance" : allPaymentCalcTable.annualHomeInsurance }} ({{ this.currencyType ? this.currencyType : '$' }})</label>
                                 <el-input type="text" v-model="allPaymentCalcTableDefVal.annualHomeInsuranceDefVal"></el-input>
                             </el-col>
                         </el-row>
@@ -494,7 +494,8 @@ export default {
                 { value: '৳', label: 'BDT (৳)' }, 
                 { value: '₪', label: 'ILS (₪)' },
                 { value: 'ரூ', label: 'LKR (ரூ)'}
-            ]
+            ],
+            curr_type: ''
         }
     },
     methods: {

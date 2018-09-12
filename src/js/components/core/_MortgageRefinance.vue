@@ -72,7 +72,7 @@
 
         <div class="remainingLoanTermSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.remainingLoanTerm ? "Remaining Loan Term" : mortgageRefinanceLabel.remainingLoanTerm }} /year</label><br />
+                <label>{{ !mortgageRefinanceLabel.remainingLoanTerm ? "Remaining Loan Term" : mortgageRefinanceLabel.remainingLoanTerm }} /Year</label><br />
                 <div class="inp_fields">
                     <input type="number" min=0 id="remaining_loan_term" 
                         name="remaining_loan_term" 
@@ -87,7 +87,7 @@
                 </span>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.newLoanTerm ? "New Loan Term" : mortgageRefinanceLabel.newLoanTerm }} /year</label><br />
+                <label>{{ !mortgageRefinanceLabel.newLoanTerm ? "New Loan Term" : mortgageRefinanceLabel.newLoanTerm }} /Year</label><br />
                 <div class="inp_fields">
                     <input type="number" min=0 id="new_loan_term"
                         class="typeNumbers" 

@@ -3,7 +3,7 @@
 		<div class="loan-info">
 			<h3>{{ tableTitle }}</h3> 
 			<div class="mortgage_amount">
-				<label>{{ !mortgagePaymentLabel.mortgageAmount ? "Mortgage Amount" : mortgagePaymentLabel.mortgageAmount }} ({{currencyType}})</label>
+				<label>{{ !mortgagePaymentLabel.mortgageAmount ? "Mortgage Amount" : mortgagePaymentLabel.mortgageAmount }} ({{curr_type}})</label>
 				<div class="inp_fields">
                     <input type="number" min=0 name="mortgage_amount"
 					   id="mortgage_amount" v-model="mortgage_amount_def_val" :placeholder="getMortgageAmnt(mortgagePaymentLabel.mortgageAmount)"
@@ -11,7 +11,7 @@
                 </div>
 			</div>
 			<div class="term_in_years">
-				<label>{{ !mortgagePaymentLabel.termInYears ? "Term in Years" : mortgagePaymentLabel.termInYears }} (/year)</label>
+				<label>{{ !mortgagePaymentLabel.termInYears ? "Term in year" : mortgagePaymentLabel.termInYears }}</label>
 				<div class="inp_fields">
                     <input type="number" min=0 name="term_in_years"
 					   id="term_in_years" v-model="term_in_years_def_val" :placeholder="getTermInYears(mortgagePaymentLabel.termInYears)"
@@ -27,7 +27,7 @@
                 </div>
 			</div>
 			<div class="annual_property_taxes">
-				<label>{{ !mortgagePaymentLabel.annualPropertyTaxes ? "Annual Property Taxes" : mortgagePaymentLabel.annualPropertyTaxes }} ({{currencyType}})</label>
+				<label>{{ !mortgagePaymentLabel.annualPropertyTaxes ? "Annual Property Taxes" : mortgagePaymentLabel.annualPropertyTaxes }} ({{curr_type}})</label>
 				<div class="inp_fields">
                     <input type="number" min=0 name="annual_property_taxes"
 					   id="annual_property_taxes" v-model="annual_property_taxes_def_val" :placeholder="getPropTaxes(mortgagePaymentLabel.annualPropertyTaxes)"
@@ -35,7 +35,7 @@
                 </div>
 			</div>
 			<div class="annual_property_insurance">
-				<label>{{ !mortgagePaymentLabel.annualHomeInsurance ? "Annual Home Insurance" : mortgagePaymentLabel.annualHomeInsurance }} ({{currencyType}})</label>
+				<label>{{ !mortgagePaymentLabel.annualHomeInsurance ? "Annual Home Insurance" : mortgagePaymentLabel.annualHomeInsurance }} ({{curr_type}})</label>
 				<div class="inp_fields">
                     <input type="number" min=0 name="annual_property_insurance"
 					   id="annual_property_insurance" v-model="annual_property_insurance_def_val" :placeholder="getInsurance(mortgagePaymentLabel.annualHomeInsurance)"
@@ -44,11 +44,11 @@
 			</div>
 			<div class="mortgage_payment_pi">
 				<h4><strong>Monthly Payment(PI):</strong></h4>
-                <h5>{{currencyType}} {{ pi.toFixed(2) }}</h5>
+                <h5>{{curr_type}} {{ pi.toFixed(2) }}</h5>
 			</div>
 			<div class="mortgage_payment_piti">
 				<h4><strong>Monthly Payment(PITI):</strong></h4>
-                 <h5>{{currencyType}} {{ piti.toFixed(2) }}</h5>
+                 <h5>{{curr_type}} {{ piti.toFixed(2) }}</h5>
 			</div>
 		</div>
 	</div>
@@ -73,7 +73,8 @@ export default {
             annual_property_taxes: 'Annual Property Taxes',
             annual_property_taxes_def_val: 15,
             annual_property_insurance: 'Annual Property Insurance',
-            annual_property_insurance_def_val: 15
+            annual_property_insurance_def_val: 15,
+            curr_type: ''
         }
     },
     created() {
@@ -88,8 +89,10 @@ export default {
     	this.annual_property_insurance = this.mortgagePaymentLabel.annualHomeInsurance;
         this.annual_property_insurance_def_val = this.mortgagePaymentDefault.annualHomeInsuranceDefVal;
         if(!this.currencyType) {
-            this.currencyType = "$";
-        };
+            this.curr_type = "$";
+        } else {
+            this.curr_type = this.currencyType
+        }
     },
     computed: {
         pi() {
@@ -129,7 +132,7 @@ export default {
         },
         getTermInYears(str) {
             if(str == '') {
-                return 'Term in Years'
+                return 'Term in Year'
             }
             return str;
         },

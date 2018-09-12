@@ -50,7 +50,7 @@
 				<div v-if="calc_type=='mortgage_calculator'"  style="margin-top: 20px">
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_mort_calc_table.loanAmount ? "Loan Amount" : all_mort_calc_table.loanAmount }} </label>
+							<label>{{ !all_mort_calc_table.loanAmount ? "Loan Amount" : all_mort_calc_table.loanAmount }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Loan Amount"  
 									v-model="all_mort_calc_table.loanAmount" 
@@ -59,14 +59,14 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_mort_calc_table.downPament ? "Down Pament" : all_mort_calc_table.downPament }}</label>
+							<label>{{ !all_mort_calc_table.downPament ? "Down Pament" : all_mort_calc_table.downPament }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Down Pament" 
 									v-model="all_mort_calc_table.downPament" 
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_mort_calc_table.downPament ? "Down Pament" : all_mort_calc_table.downPament }} Percentage</label>
+							<label>{{ !all_mort_calc_table.downPament ? "Down Pament" : all_mort_calc_table.downPament }} Percentage (%)</label>
 							<el-input type="text" 
 									:placeholder="getDownPamentPerc(all_mort_calc_table.downPament)" 
 									disabled></el-input>
@@ -74,13 +74,13 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_mort_calc_table.mortgageTerm ? "Mortgage Term" : all_mort_calc_table.mortgageTerm }} Years</label>
+							<label>{{ !all_mort_calc_table.mortgageTerm ? "Mortgage Term" : all_mort_calc_table.mortgageTerm }} /Year</label>
 							<el-input type="text" 
 									:placeholder="getMortgageTerm(all_mort_calc_table.mortgageTerm)" 
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_mort_calc_table.mortgageTerm ? "Mortgage Term" : all_mort_calc_table.mortgageTerm }} Months</label>
+							<label>{{ !all_mort_calc_table.mortgageTerm ? "Mortgage Term" : all_mort_calc_table.mortgageTerm }} /Month</label>
 							<el-input type="text" 
 									:placeholder="getMortgageTermMonth(all_mort_calc_table.mortgageTerm)" 
 									disabled></el-input>
@@ -88,7 +88,7 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_mort_calc_table.annualInterestRate ? "Annual Interest Rate" : all_mort_calc_table.annualInterestRate }}</label>
+							<label>{{ !all_mort_calc_table.annualInterestRate ? "Annual Interest Rate" : all_mort_calc_table.annualInterestRate }} (%)</label>
 							<el-input type="text" 
 									disabled 
 									v-model="all_mort_calc_table.annualInterestRate" 
@@ -100,7 +100,7 @@
 				<div v-if="calc_type==='mortgage_refinance'">
 					<el-row :gutter="15" style="margin-top: 20px">
 						<el-col :span="24">
-							<label>{{ !all_refinance_calc_table.currentlyMonthlyPayment ? "Currently Monthly Payment" : all_refinance_calc_table.currentlyMonthlyPayment }}</label>
+							<label>{{ !all_refinance_calc_table.currentlyMonthlyPayment ? "Currently Monthly Payment" : all_refinance_calc_table.currentlyMonthlyPayment }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text"
 									placeholder="Current Monthly Payment" 
 									v-model="all_refinance_calc_table.currentlyMonthlyPayment" 
@@ -109,14 +109,14 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.loanIntRate ? "Current Loan Interest Rate" : all_refinance_calc_table.loanIntRate }}</label>
+							<label>{{ !all_refinance_calc_table.loanIntRate ? "Current Loan Interest Rate" : all_refinance_calc_table.loanIntRate }} (%)</label>
 							<el-input type="text" 
 									placeholder="Current Loan Interest Rate" 
 									v-model="all_refinance_calc_table.loanIntRate" 
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.balanceMortgage ? "Balance Left on Mortgage" : all_refinance_calc_table.balanceMortgage }}</label>
+							<label>{{ !all_refinance_calc_table.balanceMortgage ? "Balance Left on Mortgage" : all_refinance_calc_table.balanceMortgage }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Balance Left on Mortgage" 
 									v-model="all_refinance_calc_table.balanceMortgage" 
@@ -125,14 +125,14 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.newIntRate ? "New Interest Rate" : all_refinance_calc_table.newIntRate }}</label>
+							<label>{{ !all_refinance_calc_table.newIntRate ? "New Interest Rate" : all_refinance_calc_table.newIntRate }} (%)</label>
 							<el-input type="text" 
 									placeholder="New Interest Rate" 
 									v-model="all_refinance_calc_table.newIntRate"
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.remainingLoanTerm ? "Remaining Loan Term" : all_refinance_calc_table.remainingLoanTerm }}</label>
+							<label>{{ !all_refinance_calc_table.remainingLoanTerm ? "Remaining Loan Term" : all_refinance_calc_table.remainingLoanTerm }} /Year</label>
 							<el-input type="text" 
 									placeholder="Remaining Loan Term" 
 									v-model="all_refinance_calc_table.remainingLoanTerm" 
@@ -141,7 +141,7 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_refinance_calc_table.newLoanTerm ? "New Loan Term" : all_refinance_calc_table.newLoanTerm }}</label>
+							<label>{{ !all_refinance_calc_table.newLoanTerm ? "New Loan Term" : all_refinance_calc_table.newLoanTerm }} /Year</label>
 							<el-input type="text" 
 									placeholder="New Loan Term" 
 									v-model="all_refinance_calc_table.newLoanTerm" 
@@ -162,19 +162,19 @@
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<p>Costs of points: $0.00</p>
+							<p>Costs of points: {{  currency_type ? currency_type : '$'}}0.00</p>
 						</el-col>
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.applicationFee ? "Application Fee" : all_refinance_calc_table.applicationFee }}</label>
+							<label>{{ !all_refinance_calc_table.applicationFee ? "Application Fee" : all_refinance_calc_table.applicationFee }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Application Fee"
 									v-model="all_refinance_calc_table.applicationFee" 
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.creditCheck ? "Credit Check" : all_refinance_calc_table.creditCheck }}</label>
+							<label>{{ !all_refinance_calc_table.creditCheck ? "Credit Check" : all_refinance_calc_table.creditCheck }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Credit Check"
 									v-model="all_refinance_calc_table.creditCheck" 
@@ -183,14 +183,14 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.attorneyFeeYours ? "Attorney's fee (yours)" : all_refinance_calc_table.attorneyFeeYours }}</label>
+							<label>{{ !all_refinance_calc_table.attorneyFeeYours ? "Attorney's fee (yours)" : all_refinance_calc_table.attorneyFeeYours }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Attorney's fee (yours)"
 									v-model="all_refinance_calc_table.attorneyFeeYours" 
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.attorneyFeeLenders ? "Attorney's Fee(lenders)" : all_refinance_calc_table.attorneyFeeLenders }}</label>
+							<label>{{ !all_refinance_calc_table.attorneyFeeLenders ? "Attorney's Fee(lenders)" : all_refinance_calc_table.attorneyFeeLenders }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Attorney's Fee(lenders)"
 									v-model="all_refinance_calc_table.attorneyFeeLenders" 
@@ -199,14 +199,14 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.titleSearch ? "Title Search" : all_refinance_calc_table.titleSearch }}</label>
+							<label>{{ !all_refinance_calc_table.titleSearch ? "Title Search" : all_refinance_calc_table.titleSearch }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Title Search"
 									v-model="all_refinance_calc_table.titleSearch" 
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.titleInsurance ? "Title Insurance" : all_refinance_calc_table.titleInsurance }}</label>
+							<label>{{ !all_refinance_calc_table.titleInsurance ? "Title Insurance" : all_refinance_calc_table.titleInsurance }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Title Insurance"
 									v-model="all_refinance_calc_table.titleInsurance"
@@ -215,14 +215,14 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.appraisalFee ? "Appraisal Fee" : all_refinance_calc_table.appraisalFee }}</label>
+							<label>{{ !all_refinance_calc_table.appraisalFee ? "Appraisal Fee" : all_refinance_calc_table.appraisalFee }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text"
 									placeholder="Appraisal Fee" 
 									v-model="all_refinance_calc_table.appraisalFee"
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.inspections ? "Inspections" : all_refinance_calc_table.inspections }}</label>
+							<label>{{ !all_refinance_calc_table.inspections ? "Inspections" : all_refinance_calc_table.inspections }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Inspections"
 									v-model="all_refinance_calc_table.inspections" 
@@ -231,14 +231,14 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.localFees ? "Local Fees" : all_refinance_calc_table.localFees }}</label>
+							<label>{{ !all_refinance_calc_table.localFees ? "Local Fees" : all_refinance_calc_table.localFees }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Local Fees"
 									v-model="all_refinance_calc_table.localFees" 
 									disabled></el-input>
 						</el-col>
 						<el-col :span="12">
-							<label>{{ !all_refinance_calc_table.documentPreparation ? "Document Preparation" : all_refinance_calc_table.documentPreparation }}</label>
+							<label>{{ !all_refinance_calc_table.documentPreparation ? "Document Preparation" : all_refinance_calc_table.documentPreparation }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Document Preparation"
 									v-model="all_refinance_calc_table.documentPreparation" 
@@ -247,7 +247,7 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_refinance_calc_table.other ? "Other" : all_refinance_calc_table.other }}</label>
+							<label>{{ !all_refinance_calc_table.other ? "Other" : all_refinance_calc_table.other }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Other"
 									v-model="all_refinance_calc_table.other" 
@@ -260,7 +260,7 @@
 				<div v-if="calc_type==='mortgage_payment'">
 					<el-row :gutter="15" style="margin-top: 20px">
 						<el-col :span="24">
-							<label>{{ !all_payment_calc_table.mortgageAmount ? "Mortgage Amount" : all_payment_calc_table.mortgageAmount }}</label>
+							<label>{{ !all_payment_calc_table.mortgageAmount ? "Mortgage Amount" : all_payment_calc_table.mortgageAmount }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Mortgage Amount"
 									v-model="all_payment_calc_table.mortgageAmount" 
@@ -269,16 +269,16 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_payment_calc_table.termInYears ? "Term in Years" : all_payment_calc_table.termInYears }}</label>
+							<label>{{ !all_payment_calc_table.termInYears ? "Term in Year" : all_payment_calc_table.termInYears }}</label>
 							<el-input type="text"
-									placeholder="Term in Years"
+									placeholder="Term in Year"
 									v-model="all_payment_calc_table.termInYears" 
 									disabled></el-input>
 						</el-col>
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_payment_calc_table.interestRate ? "Interest Rate" : all_payment_calc_table.interestRate }}</label>
+							<label>{{ !all_payment_calc_table.interestRate ? "Interest Rate" : all_payment_calc_table.interestRate }} (%)</label>
 							<el-input type="text" 
 									placeholder="Interest Rate"
 									v-model="all_payment_calc_table.interestRate" 
@@ -287,7 +287,7 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_payment_calc_table.annualPropertyTaxes ? "Annual Property Taxes" : all_payment_calc_table.annualPropertyTaxes }}</label>
+							<label>{{ !all_payment_calc_table.annualPropertyTaxes ? "Annual Property Taxes" : all_payment_calc_table.annualPropertyTaxes }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Annual Property Taxes"
 									v-model="all_payment_calc_table.annualPropertyTaxes" 
@@ -296,7 +296,7 @@
 					</el-row>
 					<el-row :gutter="15">
 						<el-col :span="24">
-							<label>{{ !all_payment_calc_table.annualHomeInsurance ? "Annual Home Insurance" : all_payment_calc_table.annualHomeInsurance }}</label>
+							<label>{{ !all_payment_calc_table.annualHomeInsurance ? "Annual Home Insurance" : all_payment_calc_table.annualHomeInsurance }} ({{  currency_type ? currency_type : '$'}})</label>
 							<el-input type="text" 
 									placeholder="Annual Home Insurance"
 									v-model="all_payment_calc_table.annualHomeInsurance" 
@@ -399,7 +399,7 @@ export default {
 				},
 				all_payment_calc_table: {
 					mortgageAmount: 'Mortgage Amount',
-					termInYears: 'Term in Years',
+					termInYears: 'Term in Year',
 					interestRate: 'Interest Rate', 
 					annualHomeInsurance: 'Annual Home Insurance',
 					annualPropertyTaxes: 'Annual Property Taxes'
@@ -581,15 +581,15 @@ export default {
             },
             getMortgageTerm(str) {
             	if(str === '') {
-            		return 'Mortgage Term Years'
+            		return 'Mortgage Term'
             	}
-            	return str + ' Years';
+            	return str;
             },
             getMortgageTermMonth(str) {
             	if(str === '') {
-            		return 'Mortgage Term Months'
+            		return 'Mortgage Term'
             	}
-            	return str + ' Months'
+            	return str;
             }
 		},
 		created() {
