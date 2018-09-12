@@ -441,8 +441,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['tableTitle', 'mortgageCalcLabel', 'mortgageCalcDef', 'amortizationTable', 'currencyType'],
@@ -786,13 +784,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (str == '') {
                 str = 'Mortgage Term';
             }
-            return str + ' Years';
+            return str;
         },
         getMortgageTermMonth: function getMortgageTermMonth(str) {
             if (str == '') {
                 str = 'Mortgage Term Months';
             }
-            return str + ' Months';
+            return str;
         },
         getAnnualIntRate: function getAnnualIntRate(str) {
             if (str == '') {
@@ -896,10 +894,6 @@ var render = function() {
           _c("br"),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
-            _c("span", { staticClass: "currency_icon" }, [
-              _vm._v(_vm._s(_vm.currencyType))
-            ]),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -939,15 +933,11 @@ var render = function() {
                 !_vm.mortgageCalcLabel.downPament
                   ? "Down Payment"
                   : _vm.mortgageCalcLabel.downPament
-              ) + " Percentage"
+              ) + " Percentage (%)"
             )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
-            _c("span", { staticClass: "currency_icon" }, [
-              _vm._v(_vm._s(_vm.currencyType))
-            ]),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -987,7 +977,7 @@ var render = function() {
                 !_vm.mortgageCalcLabel.mortgageTerm
                   ? "Mortgage Term"
                   : _vm.mortgageCalcLabel.mortgageTerm
-              ) + " /year"
+              ) + " /Year"
             )
           ]),
           _vm._v(" "),
@@ -1048,7 +1038,7 @@ var render = function() {
                 !_vm.mortgageCalcLabel.mortgageTerm
                   ? "Mortgage Term"
                   : _vm.mortgageCalcLabel.mortgageTerm
-              ) + " /month"
+              ) + " /Month"
             )
           ]),
           _vm._v(" "),
@@ -2196,7 +2186,7 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.remainingLoanTerm
                 ? "Remaining Loan Term"
                 : _vm.mortgageRefinanceLabel.remainingLoanTerm
-            ) + " /year"
+            ) + " /Year"
           )
         ]),
         _c("br"),
@@ -2256,7 +2246,7 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.newLoanTerm
                 ? "New Loan Term"
                 : _vm.mortgageRefinanceLabel.newLoanTerm
-            ) + " /year"
+            ) + " /Year"
           )
         ]),
         _c("br"),
@@ -3100,7 +3090,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             annual_property_taxes: 'Annual Property Taxes',
             annual_property_taxes_def_val: 15,
             annual_property_insurance: 'Annual Property Insurance',
-            annual_property_insurance_def_val: 15
+            annual_property_insurance_def_val: 15,
+            curr_type: ''
         };
     },
     created: function created() {
@@ -3115,8 +3106,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.annual_property_insurance = this.mortgagePaymentLabel.annualHomeInsurance;
         this.annual_property_insurance_def_val = this.mortgagePaymentDefault.annualHomeInsuranceDefVal;
         if (!this.currencyType) {
-            this.currencyType = "$";
-        };
+            this.curr_type = "$";
+        } else {
+            this.curr_type = this.currencyType;
+        }
     },
 
     computed: {
@@ -3156,7 +3149,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getTermInYears: function getTermInYears(str) {
             if (str == '') {
-                return 'Term in Years';
+                return 'Term in Year';
             }
             return str;
         },
@@ -3203,7 +3196,7 @@ var render = function() {
                 : _vm.mortgagePaymentLabel.mortgageAmount
             ) +
               " (" +
-              _vm._s(_vm.currencyType) +
+              _vm._s(_vm.curr_type) +
               ")"
           )
         ]),
@@ -3246,9 +3239,9 @@ var render = function() {
           _vm._v(
             _vm._s(
               !_vm.mortgagePaymentLabel.termInYears
-                ? "Term in Years"
+                ? "Term in year"
                 : _vm.mortgagePaymentLabel.termInYears
-            ) + " (/year)"
+            )
           )
         ]),
         _vm._v(" "),
@@ -3338,7 +3331,7 @@ var render = function() {
                 : _vm.mortgagePaymentLabel.annualPropertyTaxes
             ) +
               " (" +
-              _vm._s(_vm.currencyType) +
+              _vm._s(_vm.curr_type) +
               ")"
           )
         ]),
@@ -3385,7 +3378,7 @@ var render = function() {
                 : _vm.mortgagePaymentLabel.annualHomeInsurance
             ) +
               " (" +
-              _vm._s(_vm.currencyType) +
+              _vm._s(_vm.curr_type) +
               ")"
           )
         ]),
@@ -3427,7 +3420,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("h5", [
-          _vm._v(_vm._s(_vm.currencyType) + " " + _vm._s(_vm.pi.toFixed(2)))
+          _vm._v(_vm._s(_vm.curr_type) + " " + _vm._s(_vm.pi.toFixed(2)))
         ])
       ]),
       _vm._v(" "),
@@ -3435,7 +3428,7 @@ var render = function() {
         _vm._m(1),
         _vm._v(" "),
         _c("h5", [
-          _vm._v(_vm._s(_vm.currencyType) + " " + _vm._s(_vm.piti.toFixed(2)))
+          _vm._v(_vm._s(_vm.curr_type) + " " + _vm._s(_vm.piti.toFixed(2)))
         ])
       ])
     ])

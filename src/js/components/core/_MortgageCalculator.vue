@@ -24,7 +24,6 @@
 				<div class="downPament">
 					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }} ({{curr_Type}})</label><br />
 					<div class="inp_fields">
-                        <span class="currency_icon">{{currencyType}}</span>
                         <input type="number" min=0 id="downPament"
                                 class="typeNumbers" 
                                 name="downPament" 
@@ -33,9 +32,8 @@
                     </div>
 				</div>
 				<div class="downPamentPerc">
-					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }} Percentage</label>
+					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }} Percentage (%)</label>
 					<div class="inp_fields">
-                        <span class="currency_icon">{{currencyType}}</span>
                         <input type="number" min=0 id="downPamentPerc" 
                             class="typeNumbers"
                             name="downPamentPerc" 
@@ -46,7 +44,7 @@
 			</div>
 			<div class="mortgageTermSection">
 				<div class="mortgageTerm">
-					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} /year</label>
+					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} /Year</label>
 					<div class="inp_fields">
                         <input type="number" min=0 id="mortgageTerm" 
                                 class="typeNumbers"
@@ -62,7 +60,7 @@
 	                </span>
 				</div>
 				<div class="mortgageTermMonth">
-					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} /month</label>
+					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} /Month</label>
 					<div class="inp_fields">
                         <input type="number" min=0 id="mortgageTermMonth"
                             class="typeNumbers" 
@@ -521,13 +519,13 @@
             if(str == '') {
                 str = 'Mortgage Term';
             }
-            return str + ' Years';
+            return str;
         },
         getMortgageTermMonth(str) {
             if(str == '') {
                 str = 'Mortgage Term Months';
             }
-            return str + ' Months';
+            return str;
         },
         getAnnualIntRate(str) {
             if(str == '') {

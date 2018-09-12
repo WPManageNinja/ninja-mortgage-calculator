@@ -298,7 +298,7 @@ class MortgageCalculatorHandler
 
     			'selectedLabel' => array(
 					'mortgageAmount' 	  => 'Mortgage Amount',
-					'termInYears' 		  => 'Term in years',
+					'termInYears' 		  => 'Term in year',
 					'interestRate' 		  => 'Interest Rate',
 					'annualPropertyTaxes' => 'Annual Property Taxes',
 					'annualHomeInsurance' => 'Annual Home Insurance'

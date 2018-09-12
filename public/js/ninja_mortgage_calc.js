@@ -29632,7 +29632,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			},
 			all_payment_calc_table: {
 				mortgageAmount: 'Mortgage Amount',
-				termInYears: 'Term in Years',
+				termInYears: 'Term in Year',
 				interestRate: 'Interest Rate',
 				annualHomeInsurance: 'Annual Home Insurance',
 				annualPropertyTaxes: 'Annual Property Taxes'
@@ -29799,15 +29799,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		getMortgageTerm: function getMortgageTerm(str) {
 			if (str === '') {
-				return 'Mortgage Term Years';
+				return 'Mortgage Term';
 			}
-			return str + ' Years';
+			return str;
 		},
 		getMortgageTermMonth: function getMortgageTermMonth(str) {
 			if (str === '') {
-				return 'Mortgage Term Months';
+				return 'Mortgage Term';
 			}
-			return str + ' Months';
+			return str;
 		}
 	},
 	created: function created() {
@@ -30382,7 +30382,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             acceptedMortgageTermValue: '',
             acceptedAnnInt: '',
             passed: '',
-            currency_types: [{ value: '$', label: 'USD (US$)' }, { value: '€', label: 'EUR (€)' }, { value: '¥', label: 'JPY (¥)' }, { value: '£', label: 'GBP (£)' }, { value: 'A$', label: 'AUD (A$)' }, { value: 'C$', label: 'CAD (C$)' }, { value: 'Fr', label: 'CHF (Fr)' }, { value: 'NZ$', label: 'NZD (NZ$)' }, { value: 'HK$', label: 'HKD (HK$)' }, { value: '₩', label: 'KRW (₩)' }, { value: '₺', label: 'TRY (₺)' }, { value: '₽', label: 'RUB (₽)' }, { value: '₹', label: 'INR (₹)' }, { value: 'R$', label: 'BRL (R$)' }, { value: 'R', label: 'ZAR (R)' }, { value: '৳', label: 'BDT (৳)' }, { value: '₪', label: 'ILS (₪)' }, { value: 'ரூ', label: 'LKR (ரூ)' }]
+            currency_types: [{ value: '$', label: 'USD (US$)' }, { value: '€', label: 'EUR (€)' }, { value: '¥', label: 'JPY (¥)' }, { value: '£', label: 'GBP (£)' }, { value: 'A$', label: 'AUD (A$)' }, { value: 'C$', label: 'CAD (C$)' }, { value: 'Fr', label: 'CHF (Fr)' }, { value: 'NZ$', label: 'NZD (NZ$)' }, { value: 'HK$', label: 'HKD (HK$)' }, { value: '₩', label: 'KRW (₩)' }, { value: '₺', label: 'TRY (₺)' }, { value: '₽', label: 'RUB (₽)' }, { value: '₹', label: 'INR (₹)' }, { value: 'R$', label: 'BRL (R$)' }, { value: 'R', label: 'ZAR (R)' }, { value: '৳', label: 'BDT (৳)' }, { value: '₪', label: 'ILS (₪)' }, { value: 'ரூ', label: 'LKR (ரூ)' }],
+            curr_type: ''
         };
     },
 
@@ -30594,7 +30595,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Loan Amount")]),
+                            _c("label", [
+                              _vm._v(
+                                "Loan Amount (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30624,7 +30633,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Down Pament")]),
+                            _c("label", [
+                              _vm._v(
+                                "Down Pament (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30654,7 +30671,7 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Mortgage Term Years")]),
+                            _c("label", [_vm._v("Mortgage Term /Year")]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30684,7 +30701,7 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Annual Interest Rate")]),
+                            _c("label", [_vm._v("Annual Interest Rate (%)")]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30723,7 +30740,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Currently Monthly Payment")]),
+                            _c("label", [
+                              _vm._v(
+                                "Currently Monthly Payment (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30756,7 +30781,9 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Current Loan interest rate")]),
+                            _c("label", [
+                              _vm._v("Current Loan interest rate (%)")
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30786,7 +30813,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Balance left on mortgage")]),
+                            _c("label", [
+                              _vm._v(
+                                "Balance left on mortgage (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30818,7 +30853,7 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("New Interest Rate")]),
+                            _c("label", [_vm._v("New Interest Rate (%)")]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30848,7 +30883,7 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Remaining Loan Term ")]),
+                            _c("label", [_vm._v("Remaining Loan Term /Year")]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30880,7 +30915,7 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("New Loan Term ")]),
+                            _c("label", [_vm._v("New Loan Term /Year")]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30950,7 +30985,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Application Fee")]),
+                            _c("label", [
+                              _vm._v(
+                                "Application Fee (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -30981,7 +31024,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Credit Check")]),
+                            _c("label", [
+                              _vm._v(
+                                "Credit Check (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31011,7 +31062,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Attorney's fee (yours)")]),
+                            _c("label", [
+                              _vm._v(
+                                "Attorney's fee (yours) (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31043,7 +31102,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Attorney's fee (lenders)")]),
+                            _c("label", [
+                              _vm._v(
+                                "Attorney's fee (lenders) (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31075,7 +31142,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Title Search")]),
+                            _c("label", [
+                              _vm._v(
+                                "Title Search (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31105,7 +31180,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Title Insurance")]),
+                            _c("label", [
+                              _vm._v(
+                                "Title Insurance (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31136,7 +31219,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Appraisal Fee")]),
+                            _c("label", [
+                              _vm._v(
+                                "Appraisal Fee (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31166,7 +31257,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Inspections")]),
+                            _c("label", [
+                              _vm._v(
+                                "Inspections (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31197,7 +31296,13 @@ var render = function() {
                           { attrs: { span: 24 } },
                           [
                             _c("label", [
-                              _vm._v("Local fees (taxes, transfers)")
+                              _vm._v(
+                                "Local fees (taxes, transfers) (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
                             ]),
                             _vm._v(" "),
                             _c("el-input", {
@@ -31228,7 +31333,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Document preparation")]),
+                            _c("label", [
+                              _vm._v(
+                                "Document preparation (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31260,7 +31373,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Other")]),
+                            _c("label", [
+                              _vm._v(
+                                "Other (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31298,7 +31419,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Mortgage Amount")]),
+                            _c("label", [
+                              _vm._v(
+                                "Mortgage Amount (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31328,7 +31457,7 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Term in Years")]),
+                            _c("label", [_vm._v("Term in Year")]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31358,7 +31487,7 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Interest Rate")]),
+                            _c("label", [_vm._v("Interest Rate (%)")]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31388,7 +31517,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Annual Property Taxes")]),
+                            _c("label", [
+                              _vm._v(
+                                "Annual Property Taxes (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31420,7 +31557,15 @@ var render = function() {
                           "el-col",
                           { attrs: { span: 24 } },
                           [
-                            _c("label", [_vm._v("Annual Home Insurance")]),
+                            _c("label", [
+                              _vm._v(
+                                "Annual Home Insurance (" +
+                                  _vm._s(
+                                    this.currencyType ? this.currencyType : "$"
+                                  ) +
+                                  ")"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("el-input", {
                               attrs: { type: "text" },
@@ -31471,7 +31616,14 @@ var render = function() {
                                     !_vm.allMortCalcTable.loanAmount
                                       ? "Loan Amount"
                                       : _vm.allMortCalcTable.loanAmount
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31546,7 +31698,14 @@ var render = function() {
                                     !_vm.allMortCalcTable.downPament
                                       ? "Down Payment"
                                       : _vm.allMortCalcTable.downPament
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31591,7 +31750,7 @@ var render = function() {
                                     !_vm.allMortCalcTable.mortgageTerm
                                       ? "Mortgage Term"
                                       : _vm.allMortCalcTable.mortgageTerm
-                                  )
+                                  ) + " /Year"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31667,7 +31826,7 @@ var render = function() {
                                     !_vm.allMortCalcTable.annualInterestRate
                                       ? "Annual Interest Rate"
                                       : _vm.allMortCalcTable.annualInterestRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31757,7 +31916,14 @@ var render = function() {
                                       ? "Currently Monthly Payment"
                                       : _vm.allRefinanceCalcTable
                                           .currentlyMonthlyPayment
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31798,7 +31964,7 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.loanIntRate
                                       ? "Loan Interest Rate"
                                       : _vm.allRefinanceCalcTable.loanIntRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31839,7 +32005,14 @@ var render = function() {
                                       ? "Balance left on mortgage"
                                       : _vm.allRefinanceCalcTable
                                           .balanceMortgage
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31880,7 +32053,7 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.newIntRate
                                       ? "New Interest Rate"
                                       : _vm.allRefinanceCalcTable.newIntRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31921,7 +32094,7 @@ var render = function() {
                                       ? "Remaining Loan Term"
                                       : _vm.allRefinanceCalcTable
                                           .remainingLoanTerm
-                                  )
+                                  ) + " /Year"
                                 )
                               ]),
                               _vm._v(" "),
@@ -31962,7 +32135,7 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.newLoanTerm
                                       ? "New Loan Term"
                                       : _vm.allRefinanceCalcTable.newLoanTerm
-                                  )
+                                  ) + " /Year"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32050,7 +32223,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.applicationFee
                                       ? "Application Fee"
                                       : _vm.allRefinanceCalcTable.applicationFee
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32090,7 +32270,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.creditCheck
                                       ? "Credit Check"
                                       : _vm.allRefinanceCalcTable.creditCheck
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32131,7 +32318,14 @@ var render = function() {
                                       ? "Attorney's fee (yours)"
                                       : _vm.allRefinanceCalcTable
                                           .attorneyFeeYours
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32174,7 +32368,14 @@ var render = function() {
                                       ? "Attorney's Fee(lenders)"
                                       : _vm.allRefinanceCalcTable
                                           .attorneyFeeLenders
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32215,7 +32416,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.titleSearch
                                       ? "Title Search"
                                       : _vm.allRefinanceCalcTable.titleSearch
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32255,7 +32463,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.titleInsurance
                                       ? "Title Insurance"
                                       : _vm.allRefinanceCalcTable.titleInsurance
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32295,7 +32510,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.appraisalFee
                                       ? "Appraisal Fee"
                                       : _vm.allRefinanceCalcTable.appraisalFee
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32335,7 +32557,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.inspections
                                       ? "Inspections"
                                       : _vm.allRefinanceCalcTable.inspections
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32375,7 +32604,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.localFees
                                       ? "Local Fees"
                                       : _vm.allRefinanceCalcTable.localFees
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32416,7 +32652,14 @@ var render = function() {
                                       ? "Document Preparation"
                                       : _vm.allRefinanceCalcTable
                                           .documentPreparation
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32457,7 +32700,14 @@ var render = function() {
                                     !_vm.allRefinanceCalcTable.other
                                       ? "Other"
                                       : _vm.allRefinanceCalcTable.other
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32503,7 +32753,14 @@ var render = function() {
                                     !_vm.allPaymentCalcTable.mortgageAmount
                                       ? "Mortgage Amount"
                                       : _vm.allPaymentCalcTable.mortgageAmount
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32542,7 +32799,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     !_vm.allPaymentCalcTable.termInYears
-                                      ? "Term in Years"
+                                      ? "Term in Year"
                                       : _vm.allPaymentCalcTable.termInYears
                                   )
                                 )
@@ -32585,7 +32842,7 @@ var render = function() {
                                     !_vm.allPaymentCalcTable.interestRate
                                       ? "Interest Rate"
                                       : _vm.allPaymentCalcTable.interestRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32627,7 +32884,14 @@ var render = function() {
                                       ? "Annual Property Taxes"
                                       : _vm.allPaymentCalcTable
                                           .annualPropertyTaxes
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -32669,7 +32933,14 @@ var render = function() {
                                       ? "Annual Home Insurance"
                                       : _vm.allPaymentCalcTable
                                           .annualHomeInsurance
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      this.currencyType
+                                        ? this.currencyType
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33061,7 +33332,14 @@ var render = function() {
                                     !_vm.all_mort_calc_table.loanAmount
                                       ? "Loan Amount"
                                       : _vm.all_mort_calc_table.loanAmount
-                                  ) + " "
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33104,7 +33382,14 @@ var render = function() {
                                     !_vm.all_mort_calc_table.downPament
                                       ? "Down Pament"
                                       : _vm.all_mort_calc_table.downPament
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33140,7 +33425,7 @@ var render = function() {
                                     !_vm.all_mort_calc_table.downPament
                                       ? "Down Pament"
                                       : _vm.all_mort_calc_table.downPament
-                                  ) + " Percentage"
+                                  ) + " Percentage (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33174,7 +33459,7 @@ var render = function() {
                                     !_vm.all_mort_calc_table.mortgageTerm
                                       ? "Mortgage Term"
                                       : _vm.all_mort_calc_table.mortgageTerm
-                                  ) + " Years"
+                                  ) + " /Year"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33201,7 +33486,7 @@ var render = function() {
                                     !_vm.all_mort_calc_table.mortgageTerm
                                       ? "Mortgage Term"
                                       : _vm.all_mort_calc_table.mortgageTerm
-                                  ) + " Months"
+                                  ) + " /Month"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33236,7 +33521,7 @@ var render = function() {
                                       ? "Annual Interest Rate"
                                       : _vm.all_mort_calc_table
                                           .annualInterestRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33294,7 +33579,14 @@ var render = function() {
                                       ? "Currently Monthly Payment"
                                       : _vm.all_refinance_calc_table
                                           .currentlyMonthlyPayment
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33340,7 +33632,7 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.loanIntRate
                                       ? "Current Loan Interest Rate"
                                       : _vm.all_refinance_calc_table.loanIntRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33380,7 +33672,14 @@ var render = function() {
                                       ? "Balance Left on Mortgage"
                                       : _vm.all_refinance_calc_table
                                           .balanceMortgage
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33426,7 +33725,7 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.newIntRate
                                       ? "New Interest Rate"
                                       : _vm.all_refinance_calc_table.newIntRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33466,7 +33765,7 @@ var render = function() {
                                       ? "Remaining Loan Term"
                                       : _vm.all_refinance_calc_table
                                           .remainingLoanTerm
-                                  )
+                                  ) + " /Year"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33512,7 +33811,7 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.newLoanTerm
                                       ? "New Loan Term"
                                       : _vm.all_refinance_calc_table.newLoanTerm
-                                  )
+                                  ) + " /Year"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33599,7 +33898,15 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("el-col", { attrs: { span: 12 } }, [
-                            _c("p", [_vm._v("Costs of points: $0.00")])
+                            _c("p", [
+                              _vm._v(
+                                "Costs of points: " +
+                                  _vm._s(
+                                    _vm.currency_type ? _vm.currency_type : "$"
+                                  ) +
+                                  "0.00"
+                              )
+                            ])
                           ])
                         ],
                         1
@@ -33620,7 +33927,14 @@ var render = function() {
                                       ? "Application Fee"
                                       : _vm.all_refinance_calc_table
                                           .applicationFee
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33658,7 +33972,14 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.creditCheck
                                       ? "Credit Check"
                                       : _vm.all_refinance_calc_table.creditCheck
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33705,7 +34026,14 @@ var render = function() {
                                       ? "Attorney's fee (yours)"
                                       : _vm.all_refinance_calc_table
                                           .attorneyFeeYours
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33746,7 +34074,14 @@ var render = function() {
                                       ? "Attorney's Fee(lenders)"
                                       : _vm.all_refinance_calc_table
                                           .attorneyFeeLenders
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33792,7 +34127,14 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.titleSearch
                                       ? "Title Search"
                                       : _vm.all_refinance_calc_table.titleSearch
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33831,7 +34173,14 @@ var render = function() {
                                       ? "Title Insurance"
                                       : _vm.all_refinance_calc_table
                                           .titleInsurance
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33877,7 +34226,14 @@ var render = function() {
                                       ? "Appraisal Fee"
                                       : _vm.all_refinance_calc_table
                                           .appraisalFee
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33915,7 +34271,14 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.inspections
                                       ? "Inspections"
                                       : _vm.all_refinance_calc_table.inspections
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33960,7 +34323,14 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.localFees
                                       ? "Local Fees"
                                       : _vm.all_refinance_calc_table.localFees
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -33999,7 +34369,14 @@ var render = function() {
                                       ? "Document Preparation"
                                       : _vm.all_refinance_calc_table
                                           .documentPreparation
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -34045,7 +34422,14 @@ var render = function() {
                                     !_vm.all_refinance_calc_table.other
                                       ? "Other"
                                       : _vm.all_refinance_calc_table.other
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -34100,7 +34484,14 @@ var render = function() {
                                       ? "Mortgage Amount"
                                       : _vm.all_payment_calc_table
                                           .mortgageAmount
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -34143,7 +34534,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     !_vm.all_payment_calc_table.termInYears
-                                      ? "Term in Years"
+                                      ? "Term in Year"
                                       : _vm.all_payment_calc_table.termInYears
                                   )
                                 )
@@ -34152,7 +34543,7 @@ var render = function() {
                               _c("el-input", {
                                 attrs: {
                                   type: "text",
-                                  placeholder: "Term in Years",
+                                  placeholder: "Term in Year",
                                   disabled: ""
                                 },
                                 model: {
@@ -34189,7 +34580,7 @@ var render = function() {
                                     !_vm.all_payment_calc_table.interestRate
                                       ? "Interest Rate"
                                       : _vm.all_payment_calc_table.interestRate
-                                  )
+                                  ) + " (%)"
                                 )
                               ]),
                               _vm._v(" "),
@@ -34236,7 +34627,14 @@ var render = function() {
                                       ? "Annual Property Taxes"
                                       : _vm.all_payment_calc_table
                                           .annualPropertyTaxes
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
@@ -34284,7 +34682,14 @@ var render = function() {
                                       ? "Annual Home Insurance"
                                       : _vm.all_payment_calc_table
                                           .annualHomeInsurance
-                                  )
+                                  ) +
+                                    " (" +
+                                    _vm._s(
+                                      _vm.currency_type
+                                        ? _vm.currency_type
+                                        : "$"
+                                    ) +
+                                    ")"
                                 )
                               ]),
                               _vm._v(" "),
