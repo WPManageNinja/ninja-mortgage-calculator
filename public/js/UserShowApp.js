@@ -60,130 +60,20 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 247);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 247:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(248);
+module.exports = __webpack_require__(243);
 
 
 /***/ }),
 
-/***/ 248:
+/***/ 243:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -192,7 +82,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vee_validate__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_UserCalculator_vue__);
 
 
@@ -211,15 +101,15 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
 /***/ }),
 
-/***/ 249:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(250)
+var __vue_script__ = __webpack_require__(245)
 /* template */
-var __vue_template__ = __webpack_require__(260)
+var __vue_template__ = __webpack_require__(255)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -259,16 +149,16 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 250:
+/***/ 245:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__core_MortgageCalculator_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__core_MortgageRefinance_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__core_MortgagePayment_vue__);
 //
 //
@@ -347,15 +237,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 251:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(252)
+var __vue_script__ = __webpack_require__(247)
 /* template */
-var __vue_template__ = __webpack_require__(253)
+var __vue_template__ = __webpack_require__(248)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -395,17 +285,11 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 252:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -594,6 +478,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.downPament = this.mortgageCalcDef.downPamentDefVal;
         this.mortgageTerm = this.mortgageCalcDef.mortgageTermDefVal;
         this.annualInterestRate = this.mortgageCalcDef.annualInterestRateDefVal;
+        if (!this.currencyType) {
+            this.currencyType = "$";
+        };
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1;
@@ -913,7 +800,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 253:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -931,16 +818,15 @@ var render = function() {
               !_vm.mortgageCalcLabel.loanAmount
                 ? "Loan Amount"
                 : _vm.mortgageCalcLabel.loanAmount
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -996,16 +882,15 @@ var render = function() {
                 !_vm.mortgageCalcLabel.downPament
                   ? "Down Payment"
                   : _vm.mortgageCalcLabel.downPament
-              )
+              ) +
+                " (" +
+                _vm._s(_vm.currencyType) +
+                ")"
             )
           ]),
           _c("br"),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
-            _c("span", { staticClass: "currency_icon" }, [
-              _vm._v(_vm._s(_vm.currencyType))
-            ]),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -1045,15 +930,14 @@ var render = function() {
                 !_vm.mortgageCalcLabel.downPament
                   ? "Down Payment"
                   : _vm.mortgageCalcLabel.downPament
-              ) + " Percentage"
+              ) +
+                " Percentage (" +
+                _vm._s(_vm.currencyType) +
+                ")"
             )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
-            _c("span", { staticClass: "currency_icon" }, [
-              _vm._v(_vm._s(_vm.currencyType))
-            ]),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -1098,8 +982,6 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
-            _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -1156,13 +1038,11 @@ var render = function() {
                 !_vm.mortgageCalcLabel.mortgageTerm
                   ? "Mortgage Term"
                   : _vm.mortgageCalcLabel.mortgageTerm
-              ) + " Month"
+              ) + " /month"
             )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
-            _c("span", { staticClass: "months_icon" }, [_vm._v("months")]),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -1220,14 +1100,12 @@ var render = function() {
               !_vm.mortgageCalcLabel.annualInterestRate
                 ? "Annual Interest Rate"
                 : _vm.mortgageCalcLabel.annualInterestRate
-            )
+            ) + " (%)"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -1460,15 +1338,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 254:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(255)
+var __vue_script__ = __webpack_require__(250)
 /* template */
-var __vue_template__ = __webpack_require__(256)
+var __vue_template__ = __webpack_require__(251)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1508,29 +1386,11 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 255:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1814,6 +1674,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.inspections = this.mortgageRefinanceDef.inspectionsDefVal;
         this.document_preparation = this.mortgageRefinanceDef.documentPreparationDefVal;
         this.other = this.mortgageRefinanceDef.otherDefVal;
+        if (!this.currencyType) {
+            this.currencyType = "$";
+        };
 
         var new_interest_rate_upd = this.new_interest_rate / 12;
         var interest_rate = new_interest_rate_upd / 100;
@@ -2055,7 +1918,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 256:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2073,16 +1936,15 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.currentlyMonthlyPayment
                 ? "Currently Monthly Payment"
                 : _vm.mortgageRefinanceLabel.currentlyMonthlyPayment
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2137,14 +1999,12 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.loanIntRate
                 ? "Current Loan Interest Rate"
                 : _vm.mortgageRefinanceLabel.loanIntRate
-            )
+            ) + " (%)"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2201,16 +2061,15 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.balanceMortgage
                 ? "Balance Left on Mortgage"
                 : _vm.mortgageRefinanceLabel.balanceMortgage
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2265,14 +2124,12 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.newIntRate
                 ? "New Interest Rate"
                 : _vm.mortgageRefinanceLabel.newIntRate
-            )
+            ) + " (%)"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2329,14 +2186,12 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.remainingLoanTerm
                 ? "Remaining Loan Term"
                 : _vm.mortgageRefinanceLabel.remainingLoanTerm
-            )
+            ) + " (/year)"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2391,14 +2246,12 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.newLoanTerm
                 ? "New Loan Term"
                 : _vm.mortgageRefinanceLabel.newLoanTerm
-            )
+            ) + " (/year)"
           )
         ]),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2518,15 +2371,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.applicationFee
                 ? "Application Fee"
                 : _vm.mortgageRefinanceLabel.applicationFee
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2560,13 +2412,16 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "common" }, [
-        _c("label", [_vm._v(_vm._s(_vm.mortgageRefinanceLabel.creditCheck))]),
+        _c("label", [
+          _vm._v(
+            _vm._s(_vm.mortgageRefinanceLabel.creditCheck) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2608,15 +2463,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.attorneyFeeYours
                 ? "Attorney's Fee(yours)"
                 : _vm.mortgageRefinanceLabel.attorneyFeeYours
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2656,15 +2510,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.attorneyFeeLenders
                 ? "Attorney's Fee(lenders)"
                 : _vm.mortgageRefinanceLabel.attorneyFeeLenders
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2706,15 +2559,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.titleSearch
                 ? "Title Search"
                 : _vm.mortgageRefinanceLabel.titleSearch
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2754,15 +2606,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.titleInsurance
                 ? "Title Insurance"
                 : _vm.mortgageRefinanceLabel.titleInsurance
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2804,15 +2655,16 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.appraisalFee
                 ? "Appraisal Fee"
                 : _vm.mortgageRefinanceLabel.appraisalFee
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ") (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2852,15 +2704,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.inspections
                 ? "Inspections"
                 : _vm.mortgageRefinanceLabel.inspections
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2902,15 +2753,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.localFees
                 ? "Local Fees"
                 : _vm.mortgageRefinanceLabel.localFees
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -2950,15 +2800,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.documentPreparation
                 ? "Document Preparation"
                 : _vm.mortgageRefinanceLabel.documentPreparation
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -3000,15 +2849,14 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.other
                 ? "Other"
                 : _vm.mortgageRefinanceLabel.other
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -3119,15 +2967,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 257:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(258)
+var __vue_script__ = __webpack_require__(253)
 /* template */
-var __vue_template__ = __webpack_require__(259)
+var __vue_template__ = __webpack_require__(254)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -3167,16 +3015,11 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 258:
+/***/ 253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3261,6 +3104,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.annual_property_taxes_def_val = this.mortgagePaymentDefault.annualPropertyTaxesDefVal;
         this.annual_property_insurance = this.mortgagePaymentLabel.annualHomeInsurance;
         this.annual_property_insurance_def_val = this.mortgagePaymentDefault.annualHomeInsuranceDefVal;
+        if (!this.currencyType) {
+            this.currencyType = "$";
+        };
     },
 
     computed: {
@@ -3327,7 +3173,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 259:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3345,15 +3191,14 @@ var render = function() {
               !_vm.mortgagePaymentLabel.mortgageAmount
                 ? "Mortgage Amount"
                 : _vm.mortgagePaymentLabel.mortgageAmount
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -3398,8 +3243,6 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "years_icon" }, [_vm._v("years")]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -3439,13 +3282,11 @@ var render = function() {
               !_vm.mortgagePaymentLabel.interestRate
                 ? "Interest Rate"
                 : _vm.mortgagePaymentLabel.interestRate
-            )
+            ) + " (%)"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "percentage" }, [_vm._v("%")]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -3485,15 +3326,14 @@ var render = function() {
               !_vm.mortgagePaymentLabel.annualPropertyTaxes
                 ? "Annual Property Taxes"
                 : _vm.mortgagePaymentLabel.annualPropertyTaxes
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -3533,15 +3373,14 @@ var render = function() {
               !_vm.mortgagePaymentLabel.annualHomeInsurance
                 ? "Annual Home Insurance"
                 : _vm.mortgagePaymentLabel.annualHomeInsurance
-            )
+            ) +
+              " (" +
+              _vm._s(_vm.currencyType) +
+              ")"
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "inp_fields" }, [
-          _c("span", { staticClass: "currency_icon" }, [
-            _vm._v(_vm._s(_vm.currencyType))
-          ]),
-          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -3617,7 +3456,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 260:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3758,6 +3597,116 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
 
 /***/ }),
 

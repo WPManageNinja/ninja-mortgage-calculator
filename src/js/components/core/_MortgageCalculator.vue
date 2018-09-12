@@ -5,9 +5,8 @@
 		<div class="mortgage_calc_fields">
             <h3>{{ tableTitle }}</h3>
 			<div class="loanAmountSection">
-				<label>{{ !mortgageCalcLabel.loanAmount ? "Loan Amount" : mortgageCalcLabel.loanAmount }}</label><br />
+				<label>{{ !mortgageCalcLabel.loanAmount ? "Loan Amount" : mortgageCalcLabel.loanAmount }} ({{currencyType}})</label><br />
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 id="loanAmount" 
                             class="typeNumber"
                             name="loanAmount" 
@@ -23,9 +22,8 @@
 			</div>
 			<div class="downPamentSection">
 				<div class="downPament">
-					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }}</label><br />
+					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }} ({{currencyType}})</label><br />
 					<div class="inp_fields">
-                        <span class="currency_icon">{{currencyType}}</span>
                         <input type="number" min=0 id="downPament"
                                 class="typeNumbers" 
                                 name="downPament" 
@@ -34,9 +32,8 @@
                     </div>
 				</div>
 				<div class="downPamentPerc">
-					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }} Percentage</label>
+					<label>{{ !mortgageCalcLabel.downPament ? "Down Payment" : mortgageCalcLabel.downPament }} Percentage ({{currencyType}})</label>
 					<div class="inp_fields">
-                        <span class="currency_icon">{{currencyType}}</span>
                         <input type="number" min=0 id="downPamentPerc" 
                             class="typeNumbers"
                             name="downPamentPerc" 
@@ -49,7 +46,6 @@
 				<div class="mortgageTerm">
 					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} Years</label>
 					<div class="inp_fields">
-                        <span class="years_icon">years</span>
                         <input type="number" min=0 id="mortgageTerm" 
                                 class="typeNumbers"
                                 name="mortgageTerm" 
@@ -64,9 +60,8 @@
 	                </span>
 				</div>
 				<div class="mortgageTermMonth">
-					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} Month</label>
+					<label>{{ !mortgageCalcLabel.mortgageTerm ? "Mortgage Term" : mortgageCalcLabel.mortgageTerm }} /month</label>
 					<div class="inp_fields">
-                        <span class="months_icon">months</span>
                         <input type="number" min=0 id="mortgageTermMonth"
                             class="typeNumbers" 
                             name="mortgageTermMonth" 
@@ -82,9 +77,8 @@
 				</div>
 			</div>
 			<div class="annualIntRateSection">
-				<label>{{ !mortgageCalcLabel.annualInterestRate ? "Annual Interest Rate" : mortgageCalcLabel.annualInterestRate }}</label><br />
+				<label>{{ !mortgageCalcLabel.annualInterestRate ? "Annual Interest Rate" : mortgageCalcLabel.annualInterestRate }} (%)</label><br />
 				<div class="inp_fields">
-                    <span class="percentage">%</span>
                     <input type="number" min=0 id="annualInterestRate" 
                         class="typeNumber"
                         name="annualInterestRate" 
@@ -202,6 +196,9 @@
         this.downPament = this.mortgageCalcDef.downPamentDefVal;
         this.mortgageTerm = this.mortgageCalcDef.mortgageTermDefVal;
         this.annualInterestRate = this.mortgageCalcDef.annualInterestRateDefVal;
+        if(!this.currencyType) {
+            this.currencyType = "$";
+        };
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() +  1;

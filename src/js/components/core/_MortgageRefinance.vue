@@ -5,9 +5,8 @@
 
         <div class="currentlyMonthlyPaymentSection"> 
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.currentlyMonthlyPayment ? "Currently Monthly Payment" : mortgageRefinanceLabel.currentlyMonthlyPayment }}</label><br />
+                <label>{{ !mortgageRefinanceLabel.currentlyMonthlyPayment ? "Currently Monthly Payment" : mortgageRefinanceLabel.currentlyMonthlyPayment }} ({{currencyType}})</label><br />
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 id="current_monthly_payment" 
                         class="typeNumbers"
                         name="current_monthly_payment" 
@@ -21,9 +20,8 @@
                 </span>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.loanIntRate ? "Current Loan Interest Rate" : mortgageRefinanceLabel.loanIntRate }}</label><br />
+                <label>{{ !mortgageRefinanceLabel.loanIntRate ? "Current Loan Interest Rate" : mortgageRefinanceLabel.loanIntRate }} (%)</label><br />
                 <div class="inp_fields">
-                    <span class="percentage">%</span>
                     <input type="number" min=0 id="current_loan_interest_rate"
                             class="typeNumbers" 
                             name="current_loan_interest_rate" 
@@ -40,9 +38,8 @@
 
         <div class="balanceleftonMortgageSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.balanceMortgage ? "Balance Left on Mortgage" : mortgageRefinanceLabel.balanceMortgage }}</label><br />
+                <label>{{ !mortgageRefinanceLabel.balanceMortgage ? "Balance Left on Mortgage" : mortgageRefinanceLabel.balanceMortgage }} ({{currencyType}})</label><br />
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 id="balance" 
                         name="balance" 
                         class="typeNumbers" 
@@ -56,9 +53,8 @@
                 </span>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.newIntRate ? "New Interest Rate" : mortgageRefinanceLabel.newIntRate }}</label><br />
+                <label>{{ !mortgageRefinanceLabel.newIntRate ? "New Interest Rate" : mortgageRefinanceLabel.newIntRate }} (%)</label><br />
                 <div class="inp_fields">
-                    <span class="percentage">%</span>
                     <input type="number" min=0 id="new_interest_rate"
                         class="typeNumbers" 
                         name="new_interest_rate" 
@@ -76,9 +72,8 @@
 
         <div class="remainingLoanTermSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.remainingLoanTerm ? "Remaining Loan Term" : mortgageRefinanceLabel.remainingLoanTerm }}</label><br />
+                <label>{{ !mortgageRefinanceLabel.remainingLoanTerm ? "Remaining Loan Term" : mortgageRefinanceLabel.remainingLoanTerm }} (/year)</label><br />
                 <div class="inp_fields">
-                    <span class="years_icon">years</span>
                     <input type="number" min=0 id="remaining_loan_term" 
                         name="remaining_loan_term" 
                         class="typeNumbers" 
@@ -92,9 +87,8 @@
                 </span>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.newLoanTerm ? "New Loan Term" : mortgageRefinanceLabel.newLoanTerm }}</label><br />
+                <label>{{ !mortgageRefinanceLabel.newLoanTerm ? "New Loan Term" : mortgageRefinanceLabel.newLoanTerm }} (/year)</label><br />
                 <div class="inp_fields">
-                    <span class="years_icon">years</span>
                     <input type="number" min=0 id="new_loan_term"
                         class="typeNumbers" 
                         name="new_loan_term" 
@@ -127,17 +121,15 @@
 
         <div class="feeSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.applicationFee ? "Application Fee" : mortgageRefinanceLabel.applicationFee }}</label>
+                <label>{{ !mortgageRefinanceLabel.applicationFee ? "Application Fee" : mortgageRefinanceLabel.applicationFee }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 name="application_fee"
                        id="application_fee" v-model="application_fee" :placeholder="getApplicationFee(mortgageRefinanceLabel.applicationFee)" class="typeNumbers">
                 </div>
             </div>
             <div class="common">
-                <label>{{ mortgageRefinanceLabel.creditCheck }}</label>
+                <label>{{ mortgageRefinanceLabel.creditCheck }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" :placeholder="getCreditCheck(mortgageRefinanceLabel.creditCheck)" v-model="credit_check" min=0 id="credit_check" name="credit_check" class="typeNumbers">
                 </div>
             </div>
@@ -145,18 +137,15 @@
 
         <div class="feeSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.attorneyFeeYours ? "Attorney's Fee(yours)" : mortgageRefinanceLabel.attorneyFeeYours }}</label>
+                <label>{{ !mortgageRefinanceLabel.attorneyFeeYours ? "Attorney's Fee(yours)" : mortgageRefinanceLabel.attorneyFeeYours }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 name="attorney_fee_yours"
                        id="attorney_fee_yours" v-model="attorney_fee_yours" :placeholder="getAnthonyYours(mortgageRefinanceLabel.attorneyFeeYours)" class="typeNumbers">
                 </div>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.attorneyFeeLenders ? "Attorney's Fee(lenders)" : mortgageRefinanceLabel.attorneyFeeLenders }}</label>
-                
+                <label>{{ !mortgageRefinanceLabel.attorneyFeeLenders ? "Attorney's Fee(lenders)" : mortgageRefinanceLabel.attorneyFeeLenders }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" :placeholder="getAnthonyLenders(mortgageRefinanceLabel.attorneyFeeLenders)" v-model="attorney_fee_lenders" 
                        min=0 id="attorney_fee_lenders" name="attorney_fee_lenders" class="typeNumbers">
                 </div>
@@ -165,17 +154,15 @@
 
         <div class="feeSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.titleSearch ? "Title Search" : mortgageRefinanceLabel.titleSearch }}</label>
+                <label>{{ !mortgageRefinanceLabel.titleSearch ? "Title Search" : mortgageRefinanceLabel.titleSearch }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 name="title_search"
                        id="title_search" v-model="title_search" :placeholder="getTitleSearch(mortgageRefinanceLabel.titleSearch)" class="typeNumbers">
                 </div>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.titleInsurance ? "Title Insurance" : mortgageRefinanceLabel.titleInsurance }}</label>
+                <label>{{ !mortgageRefinanceLabel.titleInsurance ? "Title Insurance" : mortgageRefinanceLabel.titleInsurance }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" :placeholder="getTitleInsurance(mortgageRefinanceLabel.titleInsurance)" v-model="title_insurance" 
                        min=0 id="title_insurance" name="title_insurance" class="typeNumbers">
                 </div>
@@ -184,17 +171,15 @@
 
         <div class="feeSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.appraisalFee ? "Appraisal Fee" : mortgageRefinanceLabel.appraisalFee }}</label>
+                <label>{{ !mortgageRefinanceLabel.appraisalFee ? "Appraisal Fee" : mortgageRefinanceLabel.appraisalFee }} ({{currencyType}}) ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 name="appraisal_fee"
                        id="appraisal_fee" v-model="appraisal_fee" :placeholder="getAppraisalFee(mortgageRefinanceLabel.appraisalFee)" class="typeNumbers">
                 </div>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.inspections ? "Inspections" : mortgageRefinanceLabel.inspections }}</label>
+                <label>{{ !mortgageRefinanceLabel.inspections ? "Inspections" : mortgageRefinanceLabel.inspections }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" :placeholder="getInspections(mortgageRefinanceLabel.inspections)" v-model="inspections" 
                        min=0 id="inspections" name="inspections" class="typeNumbers">
                 </div>
@@ -203,17 +188,15 @@
 
         <div class="feeSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.localFees ? "Local Fees" : mortgageRefinanceLabel.localFees }}</label>
+                <label>{{ !mortgageRefinanceLabel.localFees ? "Local Fees" : mortgageRefinanceLabel.localFees }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 name="local_fees"
                        id="local_fees" v-model="local_fees" :placeholder="getLocalFees(mortgageRefinanceLabel.localFees)" class="typeNumbers">
                 </div>
             </div>
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.documentPreparation ? "Document Preparation" : mortgageRefinanceLabel.documentPreparation }}</label>
+                <label>{{ !mortgageRefinanceLabel.documentPreparation ? "Document Preparation" : mortgageRefinanceLabel.documentPreparation }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" :placeholder="getDocumentPreparation(mortgageRefinanceLabel.documentPreparation)" v-model="document_preparation" 
                        min=0 id="document_preparation" name="document_preparation" class="typeNumbers">
                 </div>
@@ -222,9 +205,8 @@
 
         <div class="feeSection">
             <div class="common">
-                <label>{{ !mortgageRefinanceLabel.other ? "Other" : mortgageRefinanceLabel.other }}</label>
+                <label>{{ !mortgageRefinanceLabel.other ? "Other" : mortgageRefinanceLabel.other }} ({{currencyType}})</label>
                 <div class="inp_fields">
-                    <span class="currency_icon">{{currencyType}}</span>
                     <input type="number" min=0 name="other"
                        id="other" v-model="other" :placeholder="getOther(mortgageRefinanceLabel.other)" class="typeNumbers">
                 </div>
@@ -304,6 +286,9 @@ export default {
         this.inspections = this.mortgageRefinanceDef.inspectionsDefVal;
         this.document_preparation = this.mortgageRefinanceDef.documentPreparationDefVal;
         this.other = this.mortgageRefinanceDef.otherDefVal;
+        if(!this.currencyType) {
+            this.currencyType = "$";
+        };
 
         var new_interest_rate_upd = this.new_interest_rate / 12;
         var interest_rate = new_interest_rate_upd / 100;
