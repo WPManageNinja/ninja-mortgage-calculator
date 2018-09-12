@@ -11,7 +11,7 @@
                 </div>
 			</div>
 			<div class="term_in_years">
-				<label>{{ !mortgagePaymentLabel.termInYears ? "Term in Years" : mortgagePaymentLabel.termInYears }}</label>
+				<label>{{ !mortgagePaymentLabel.termInYears ? "Term in Years" : mortgagePaymentLabel.termInYears }} (/year)</label>
 				<div class="inp_fields">
                     <input type="number" min=0 name="term_in_years"
 					   id="term_in_years" v-model="term_in_years_def_val" :placeholder="getTermInYears(mortgagePaymentLabel.termInYears)"

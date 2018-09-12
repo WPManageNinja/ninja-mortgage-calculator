@@ -441,6 +441,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['tableTitle', 'mortgageCalcLabel', 'mortgageCalcDef', 'amortizationTable', 'currencyType'],
@@ -470,7 +472,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             acceptedValue: '',
             acceptedTerm: '',
             acceptedTermMonth: '',
-            acceptAnnInterestRate: ''
+            acceptAnnInterestRate: '',
+            curr_Type: ''
         };
     },
     created: function created() {
@@ -479,7 +482,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.mortgageTerm = this.mortgageCalcDef.mortgageTermDefVal;
         this.annualInterestRate = this.mortgageCalcDef.annualInterestRateDefVal;
         if (!this.currencyType) {
-            this.currencyType = "$";
+            this.curr_Type = "$";
+        } else {
+            this.curr_Type = this.currencyType;
         };
         var today = new Date();
         var dd = today.getDate();
@@ -820,7 +825,7 @@ var render = function() {
                 : _vm.mortgageCalcLabel.loanAmount
             ) +
               " (" +
-              _vm._s(_vm.currencyType) +
+              _vm._s(_vm.curr_Type) +
               ")"
           )
         ]),
@@ -884,13 +889,17 @@ var render = function() {
                   : _vm.mortgageCalcLabel.downPament
               ) +
                 " (" +
-                _vm._s(_vm.currencyType) +
+                _vm._s(_vm.curr_Type) +
                 ")"
             )
           ]),
           _c("br"),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
+            _c("span", { staticClass: "currency_icon" }, [
+              _vm._v(_vm._s(_vm.currencyType))
+            ]),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -930,14 +939,15 @@ var render = function() {
                 !_vm.mortgageCalcLabel.downPament
                   ? "Down Payment"
                   : _vm.mortgageCalcLabel.downPament
-              ) +
-                " Percentage (" +
-                _vm._s(_vm.currencyType) +
-                ")"
+              ) + " Percentage"
             )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "inp_fields" }, [
+            _c("span", { staticClass: "currency_icon" }, [
+              _vm._v(_vm._s(_vm.currencyType))
+            ]),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -977,7 +987,7 @@ var render = function() {
                 !_vm.mortgageCalcLabel.mortgageTerm
                   ? "Mortgage Term"
                   : _vm.mortgageCalcLabel.mortgageTerm
-              ) + " Years"
+              ) + " /year"
             )
           ]),
           _vm._v(" "),
@@ -1159,14 +1169,14 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("h1", [
-          _c("span", [_vm._v(_vm._s(this.currencyType))]),
+          _c("span", [_vm._v(_vm._s(this.curr_Type))]),
           _vm._v(" " + _vm._s(_vm.monthlyPayment.toFixed(2)))
         ]),
         _vm._v(" "),
         _c("p", [
           _c("b", [_vm._v("Total principal paid")]),
           _vm._v(
-            ": " + _vm._s(this.currencyType) + " " + _vm._s(_vm.principalPaid)
+            ": " + _vm._s(this.curr_Type) + " " + _vm._s(_vm.principalPaid)
           )
         ]),
         _vm._v(" "),
@@ -1174,7 +1184,7 @@ var render = function() {
           _c("b", [_vm._v("Total interest paid")]),
           _vm._v(
             ": " +
-              _vm._s(this.currencyType) +
+              _vm._s(this.curr_Type) +
               " " +
               _vm._s(_vm.total_interest.toFixed(2))
           )
@@ -2186,7 +2196,7 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.remainingLoanTerm
                 ? "Remaining Loan Term"
                 : _vm.mortgageRefinanceLabel.remainingLoanTerm
-            ) + " (/year)"
+            ) + " /year"
           )
         ]),
         _c("br"),
@@ -2246,7 +2256,7 @@ var render = function() {
               !_vm.mortgageRefinanceLabel.newLoanTerm
                 ? "New Loan Term"
                 : _vm.mortgageRefinanceLabel.newLoanTerm
-            ) + " (/year)"
+            ) + " /year"
           )
         ]),
         _c("br"),
@@ -3238,7 +3248,7 @@ var render = function() {
               !_vm.mortgagePaymentLabel.termInYears
                 ? "Term in Years"
                 : _vm.mortgagePaymentLabel.termInYears
-            )
+            ) + " (/year)"
           )
         ]),
         _vm._v(" "),
