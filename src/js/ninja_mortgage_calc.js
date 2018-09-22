@@ -9,9 +9,28 @@ import lang from 'element-ui/lib/locale/lang/en';
 
 locale.use(lang);
 Vue.use(VueRouter);
-Vue.use(VeeValidate)
+Vue.use(VeeValidate);
 
-import { Button, Col, Dialog, Input, Select, Row, Option, Table,  Icon, TableColumn, Loading, Notification, Pagination, Tabs, TabPane, Popover, Switch, Message } from 'element-ui';
+import {
+    Button,
+    Col,
+    Dialog,
+    Input,
+    Select,
+    Row,
+    Option,
+    Table,
+    Icon,
+    TableColumn,
+    Loading,
+    Notification,
+    Pagination,
+    Tabs,
+    TabPane,
+    Popover,
+    Switch,
+    Message
+} from 'element-ui';
 
 Vue.use(Button)
 Vue.use(Col)
@@ -50,16 +69,16 @@ import 'element-ui/lib/theme-chalk/dialog.css';
 import 'element-ui/lib/theme-chalk/notification.css';
 import 'element-ui/lib/theme-chalk/loading.css';
 import 'element-ui/lib/theme-chalk/popover.css';
-import 'element-ui/lib/theme-chalk/pagination.css'; 
+import 'element-ui/lib/theme-chalk/pagination.css';
 
 const router = new VueRouter({
-	routes
+    routes
 });
 
 import App from './AdminApp';
 
 new Vue({
-    el:'#ninja_mortgage_calc',
+    el: '#ninja_mortgage_calc',
     router,
     render: h => h(App)
 });

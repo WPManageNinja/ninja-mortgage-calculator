@@ -2,6 +2,7 @@
     <el-dialog
         title="Add New Mortgage Table"
         :visible.sync="addTableModal"
+        @close="closeModal"
         width="60%">
         <label for="new_table_name">Table Name</label>
         <el-input id="new_table_name" type="text" placeholder="Your Table Name" v-model="table_name"></el-input> 
@@ -50,8 +51,11 @@ export default {
             var newData = {
                 tableName: this.table_name,
                 selectedCalc: this.selectedCalc
-            }
+            };
             this.$emit('addNewTable', newData)
+        },
+        closeModal() {
+            this.$emit('close');
         }
     }
 

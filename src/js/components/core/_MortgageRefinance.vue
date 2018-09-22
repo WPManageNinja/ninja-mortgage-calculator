@@ -1,8 +1,6 @@
 <template>
-    <div class="mortgage_finance_calc">
+    <div class="mortgage_finance_calc ninja_mortgage_calc_wrapper">
         <h3>{{ tableTitle }}</h3>
-
-
         <div class="currentlyMonthlyPaymentSection"> 
             <div class="common">
                 <label>{{ !mortgageRefinanceLabel.currentlyMonthlyPayment ? "Currently Monthly Payment" : mortgageRefinanceLabel.currentlyMonthlyPayment }} ({{currencyType}})</label><br />

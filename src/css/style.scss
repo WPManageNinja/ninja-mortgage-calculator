@@ -7,6 +7,9 @@ $tableBgColor: #fff;
 $tableBorderColor: #42b983;
 $calcTableBgColor: #E7EDF5;
 
+.ninja_mortgage_calc_wrapper {
+	margin: 0px 0px 25px;
+}
 
 // Styling Mortgage Calculator User View
 .mortgage_calculator {
@@ -378,7 +381,6 @@ $calcTableBgColor: #E7EDF5;
 
 }
 
-
 // Mortgage Payment Calculator User View
 .mortgage_payment_calc {
 	width: 100%;
@@ -438,9 +440,7 @@ $calcTableBgColor: #E7EDF5;
 	}
 }
 
-
 // media queries
-
 @media(max-width: 500px) {
 	.mortgage_calculator {
 		.mortgage_calc_fields {
@@ -563,11 +563,3 @@ $calcTableBgColor: #E7EDF5;
 			}
 		}
 }
-
-
-
-
-
-
-
-

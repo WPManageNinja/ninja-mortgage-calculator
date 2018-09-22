@@ -1,25 +1,17 @@
 <template>
-    <div>
-        <div v-if="table_id && calculator_type=='mortgage_calculator'">
-            <app-mortgage-calc :tableTitle="table_title" 
-                               :mortgageCalcLabel="mortgage_calculator_label" 
-                               :mortgageCalcDef="mortgage_calculator_default"
-                               :amortizationTable="amortization_table"
-                               :currencyType="currency_type" />
-        </div>
-        <div v-if="table_id && calculator_type=='mortgage_refinance'">
-            <app-mortgage-refinance :tableTitle="table_title"
-                                    :mortgageRefinanceLabel="mortgage_refinance_label"
-                                    :mortgageRefinanceDef="mortgage_refinance_default"
-                                    :currencyType="currency_type"  />
-        </div>
-        <div v-if="table_id && calculator_type=='mortgage_payment'">
-            <app-mortgage-payment :tableTitle="table_title"
-                                  :mortgagePaymentLabel="mortgage_payment_label"
-                                  :mortgagePaymentDefault="mortgage_payment_default"
-                                  :currencyType="currency_type"  />
-        </div>
-    </div>
+    <app-mortgage-calc v-if="table_id && calculator_type=='mortgage_calculator'" :tableTitle="table_title"
+                       :mortgageCalcLabel="mortgage_calculator_label"
+                       :mortgageCalcDef="mortgage_calculator_default"
+                       :amortizationTable="amortization_table"
+                       :currencyType="currency_type"/>
+    <app-mortgage-refinance v-else-if="table_id && calculator_type=='mortgage_refinance'" :tableTitle="table_title"
+                            :mortgageRefinanceLabel="mortgage_refinance_label"
+                            :mortgageRefinanceDef="mortgage_refinance_default"
+                            :currencyType="currency_type"/>
+    <app-mortgage-payment v-else-if="table_id && calculator_type=='mortgage_payment'" :tableTitle="table_title"
+                          :mortgagePaymentLabel="mortgage_payment_label"
+                          :mortgagePaymentDefault="mortgage_payment_default"
+                          :currencyType="currency_type"/>
 </template>
 
 <script>
@@ -41,7 +33,8 @@
                 mortgage_payment_label: {},
                 mortgage_payment_default: {},
                 amortization_table: true,
-                currency_type: ''
+                currency_type: '',
+                instance_id: this.$parent.instance_id
             }
         },
         components: {
@@ -50,29 +43,29 @@
             'app-mortgage-payment': MortgagePayment
         },
         created() {
-            console.log(window.ninja_mortgage_cal_vars)
-            var res = window.ninja_mortgage_cal_vars.mortgageMetaData;
-            var post = window.ninja_mortgage_cal_vars.post;
+            let vars = window['ninja_mortgage_cal_vars_' + this.instance_id];
+            let res = vars.mortgageMetaData;
+            let post = vars.post;
             this.calculator_type = post.post_content;
             this.table_id = post.ID;
             this.table_title = post.post_title;
             this.currency_type = res.currency_type;
 
-            if( this.calculator_type === 'mortgage_calculator' ) {
+            if (this.calculator_type === 'mortgage_calculator') {
                 this.mortgage_calculator_label = res.selectedLabel;
                 this.mortgage_calculator_default = res.selectedDefault;
                 this.amortization_table = res.settings;
             }
 
-            else if( this.calculator_type === 'mortgage_refinance' ) {
+            else if (this.calculator_type === 'mortgage_refinance') {
                 this.mortgage_refinance_label = res.selectedLabel;
                 this.mortgage_refinance_default = res.selectedDefault;
             }
 
-            else if( this.calculator_type === 'mortgage_payment' ) {
+            else if (this.calculator_type === 'mortgage_payment') {
                 this.mortgage_payment_label = res.selectedLabel;
                 this.mortgage_payment_default = res.selectedDefault;
             }
-        }   
+        }
     }
 </script>

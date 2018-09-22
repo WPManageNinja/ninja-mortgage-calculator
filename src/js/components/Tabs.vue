@@ -403,28 +403,16 @@
                                     v-model="amortizationtable"></app-input-switch>
                             </el-col>
                             <el-col :span="12" class="select_cur_type">
-
-                            <label><strong>Select Currency Type</strong></label><br>
-                            <el-select v-model="selectedCurrency" placeholder="Select Currency Type" class="model_select" style="width: 100%;">
-                                <el-option 
-                                    v-for="(type, i) in currency_types"
-                                    :key="i"
-                                    :label="type.label"
-                                    :value="type.value"></el-option>
-                            </el-select> 
+                                <label><strong>Currency Sign</strong></label><br>
+                                <el-input v-model="selectedCurrency"></el-input>
                             </el-col>
                         </el-row>
                     </div>
                     <div v-if="calcType=='mortgage_refinance'">
                         <el-row>
                             <el-col :span="12" class="curc_type">
-                                <el-select v-model="selectedCurrency" placeholder="Select Currency Type" class="model_select" style="width: 100%;">
-                                    <el-option 
-                                        v-for="(type, i) in currency_types"
-                                        :key="i"
-                                        :label="type.label"
-                                        :value="type.value"></el-option>
-                                </el-select>
+                                <label><strong>Currency Sign</strong></label><br>
+                                <el-input v-model="selectedCurrency"></el-input>
                             </el-col>
                         </el-row>
                     </div> 
@@ -432,14 +420,8 @@
                         <el-row>
                             <el-col :span="12" class="curc_type">
 
-                                <label><strong>Select Currency Type</strong></label><br>
-                                <el-select v-model="selectedCurrency" placeholder="Select Currency Type" class="model_select" style="width: 100%;">
-                                    <el-option 
-                                        v-for="(type, i) in currency_types"
-                                        :key="i"
-                                        :label="type.label"
-                                        :value="type.value"></el-option>
-                                </el-select>
+                                <label><strong>Currency Sign</strong></label><br>
+                                <el-input v-model="selectedCurrency"></el-input>
                             </el-col>
                         </el-row>
                     </div>
@@ -475,26 +457,7 @@ export default {
             acceptedMortgageTermValue: '',
             acceptedAnnInt: '',
             passed: '',
-            currency_types: [
-                { value: '$', label: 'USD (US$)' },
-                { value: '€', label: 'EUR (€)' },
-                { value: '¥', label: 'JPY (¥)' },
-                { value: '£', label: 'GBP (£)' }, 
-                { value: 'A$', label: 'AUD (A$)' },
-                { value: 'C$', label: 'CAD (C$)' },
-                { value: 'Fr', label: 'CHF (Fr)' },
-                { value: 'NZ$', label: 'NZD (NZ$)' },
-                { value: 'HK$', label: 'HKD (HK$)' },
-                { value: '₩', label: 'KRW (₩)' },
-                { value: '₺', label: 'TRY (₺)' },
-                { value: '₽', label: 'RUB (₽)' },
-                { value: '₹', label: 'INR (₹)' },
-                { value: 'R$', label: 'BRL (R$)'},
-                { value: 'R', label: 'ZAR (R)' },
-                { value: '৳', label: 'BDT (৳)' }, 
-                { value: '₪', label: 'ILS (₪)' },
-                { value: 'ரூ', label: 'LKR (ரூ)'}
-            ],
+            currency_types: window.ninja_mortgage_calc.currencies,
             curr_type: ''
         }
     },

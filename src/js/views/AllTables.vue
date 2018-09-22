@@ -2,14 +2,10 @@
     <div class="ninja_mortgage_editor">
         <div class="editor_header">
             <div class="section_header">
-                <h1>All Mortgage Tables</h1>
+                <h1>All Mortgage Calculators</h1>
             </div>
             <div class="section_action">
-                <label class="form_group">
-                    <input type="text" class="form_control search_action" placeholder="Search" v-model="search">
-                    <i class="el-icon-search"></i> 
-                </label>
-                <el-button size="mini" type="primary" @click="addTableModal = true">Add Table</el-button>
+                <el-button size="mini" type="primary" @click="addTableModal = true">Add Calculator</el-button>
             </div>
         </div>
     
@@ -24,6 +20,7 @@
         <!-- Dialog for Adding Table -->
         <app-add-table
             :calc_types="calc_types"
+            @close="addTableModal = false"
             :addTableModal="addTableModal"
             :addingTableAjax="addingTableAjax"
             @addNewTable="addNewTable($event)"></app-add-table>

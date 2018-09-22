@@ -1,5 +1,5 @@
 <template>
-	<div class="mortgage_calculator">
+	<div class="mortgage_calculator ninja_mortgage_calc_wrapper">
 
 		<!-- Field Section -->
 		<div class="mortgage_calc_fields">

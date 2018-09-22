@@ -1,18 +1,17 @@
 <?php
-
-defined("ABSPATH") or die;
-
 /*
-Plugin Name: Mortgage Calculator
+Plugin Name: Ninja Mortgage Calculator
 Description: The Best Mortgage Calculator Plugin for WordPress
 Version: 1.0.0
 Author: WPManageNinja
 Author URI: https://wpmanageninja.com
-Plugin URI: https://wpmanageninja.com/products/ninja-mortgage-calculator-plugin
+Plugin URI: https://github.com/WPManageNinja/ninja-mortgage-calculator
 License: GPLv2 or later
 Text Domain: ninja_mortgage
 Domain Path: /languages
 */
+
+defined("ABSPATH") or die;
 
 include "load.php";
 define("NINJA_MORTGAGE_PLUGIN_DIR_URL", plugin_dir_url(__FILE__));
@@ -20,16 +19,15 @@ define("NINJA_MORTGAGE_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
 define("NINJA_MORTGAGE_PLUGIN_DIR_VERSION", plugin_dir_path(__FILE__));
 
 
+$mortgageCalculatorInstances = array();
+
 class NINJAMortgageCalculator
 {
 	public function boot()
 	{
 		$this->commonHooks();
 		$this->adminHooks();
-		
-		$this->loadTextDomain();
 	}
-
 
 	public function commonHooks()
 	{
@@ -44,6 +42,8 @@ class NINJAMortgageCalculator
             \NinjaMortgage\Classes\ProcessDemoPage::demoPages();
         });
 
+		add_action('init', array($this, 'loadTextDomain'));
+		
 	}
 	
 	public function adminHooks()
@@ -58,18 +58,19 @@ class NINJAMortgageCalculator
 
 	public function adminEnqueueScripts()
 	{
-		wp_enqueue_style('mortgage_icon_css', NINJA_MORTGAGE_PLUGIN_DIR_URL.'/public/css/admin.css');
+		if(isset($_GET['page']) && $_GET['page'] == 'ninja-mortgage-calculator') {
+			wp_enqueue_style('mortgage_icon_css', NINJA_MORTGAGE_PLUGIN_DIR_URL.'public/css/admin.css');
+		}
 	}
 
 	public function enqueueScripts()
 	{
-		wp_enqueue_style('mortgage_userview_css', NINJA_MORTGAGE_PLUGIN_DIR_URL.'/public/css/styles.css');
+		wp_register_style('ninja_mortgage_public_css', NINJA_MORTGAGE_PLUGIN_DIR_URL.'public/css/styles.css');
 	}
-
-
+	
 	public function loadTextDomain()
 	{
-		
+		load_plugin_textdomain( 'ninja-mortgage-calculator', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 }
 

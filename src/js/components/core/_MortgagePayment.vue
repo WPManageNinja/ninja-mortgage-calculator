@@ -1,5 +1,5 @@
 <template>
-	<div class="mortgage_payment_calc">
+	<div class="mortgage_payment_calc ninja_mortgage_calc_wrapper">
 		<div class="loan-info">
 			<h3>{{ tableTitle }}</h3> 
 			<div class="mortgage_amount">

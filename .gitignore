@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+ninja-mortgage-calculator
+*.zip
 
 # local env files
 .env.local
