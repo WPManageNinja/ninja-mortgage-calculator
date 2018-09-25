@@ -21,7 +21,7 @@ define("NINJA_MORTGAGE_PLUGIN_DIR_VERSION", plugin_dir_path(__FILE__));
 
 $mortgageCalculatorInstances = array();
 
-class NINJAMortgageCalculator
+class NinjaMortgageCalculator
 {
 	public function boot()
 	{
@@ -74,9 +74,8 @@ class NINJAMortgageCalculator
 	}
 }
 
-
 add_action('plugins_loaded', function(){
-	$ninjaMortgageCalculator = new NINJAMortgageCalculator();
+	$ninjaMortgageCalculator = new NinjaMortgageCalculator();
 	$ninjaMortgageCalculator->boot(); 
 });
 

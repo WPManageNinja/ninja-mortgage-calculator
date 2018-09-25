@@ -1,4 +1,4 @@
-=== Ninja Mortgage Calculator ===
+=== Ninja Mortgage Calculator - The best Mortgage Plugin for WordPress ===
 Contributors: wpmanageninja,techjewel,adreastrian
 Tags:  Mortgage, mortgage calculator, Live Calculator, Reactive Mortgage Calculator, Calculator, Ninja Mortgagae Calculator
 Requires at least: 4.5
@@ -8,11 +8,28 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Best Mortgage Calculator WordPress Plugin
+The Best Reactive and Responive Mortgage Calculator Plugin for WordPress.
 
 == Description ==
-The Ninja Mortgage Calculator is a VueJS powered Mortgage Calculator to fit easily into any theme, on any device, at any size.
-It will update your calculated data instantly and users can calculate Mortgage easily.
+With Ninja Mortgage Calculator you can add Mortgage Payment, Mortgage Refinance and Mortgage Calculator in a minute. Using it's powerful calculator builder you can customize the layouts, enable/disable features, set default values, customize the labels easily. You can build unlimited calculators and display those in your page, post, widget or anywhere in your WordPress site just using shortcode.
+
+==Amazing Features==
+* Build Mortgage Payment Calculator 
+* Build Mortgage Refinance Calculator
+* Build Mortgage Calculator
+* Using the builder, You can customize all the calculator labels.
+* You can set default interest rate, Loan Amount, Down Payment, Mortgage Term etc so Your users don't have to input. They can just change.
+* Show Amortization Table which will be very powerful for your users to understand the whole payment shedule.
+* Using the date picker your users can see when the payment will be cleared.
+
+==Build Mortgage Calculator In Your WordPress==
+Our free mortgage calculator helps you determine what your monthly payment will look like. Using Ninja Mortgage Calculotor You can easil built it.
+
+==Build Mortgage Calculator With Taxes And Insurance In Your WordPress==
+If you want to create a calculator with Tax and Insurance then Ninja Mortgage calculor is the perfect plugin for you.
+
+==Build Mortgage Refinance Calculator In Your WordPress==
+Refinancing a mortgage is about the numbers. Whether you're seeking a lower monthly payment or looking to shorten the length of a mortgage, refinancing makes sense when you can reduce the costs of the loan. Using Ninja Mortgage Calcultor you can easily built it.
 
 
 == Usage ==
@@ -47,9 +64,25 @@ Install From WordPress Admin Panel:
 = Is The Ninja Mortgage Calculator Responsive? =
 Yes, It's by default mobile responsive
 
+= How Many Calculator I can Build? =
+There has no restrictions so You can build as many calcultors as You want.
+
+= Can I set default Values to the calcultor fields? =
+Yes, You can set default values
+
+= Can I set build Mortgage Refinance Calculotor? =
+Yes, You can.
+
+
 
 == Screenshots ==
-
+1. Mortgage Calculator Demo
+2. Mortgage Payment Calculator Preview
+3. Mortgage Refinance Calculator Preview
+4. Frontend Preview
+5. Admin Panel Index
+6. Calculator Builder Screen
+7. Calculator Default Value Editor
 
 == Changelog ==
 = 1.0 =
