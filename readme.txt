@@ -33,7 +33,7 @@ Refinancing a mortgage is about the numbers. Whether you're seeking a lower mont
 
 
 == Usage ==
-To show one of your Pricing Table in a post, on a page, or in a text widget, just embed the Shortcode [ninja_mortgage_cal id="CALCULTAOR_ID"] id="CALCULTAOR_ID"] into the post/page/text widget, where <CALCULTAOR_ID> is the ID of your Calculator (can be found on the “Mortgage Calculator” screen.)
+To show one of your Pricing Table in a post, on a page, or in a text widget, just embed the Shortcode [ninja_mortgage_cal id="CALCULTAOR_ID"] into the post/page/text widget, where <CALCULTAOR_ID> is the ID of your Calculator (can be found on the “Mortgage Calculator” screen.)
 
 == Awesome Support ==
 Get dedicated support from our awesome happiness managers and developers and Yes! It's completely free.
