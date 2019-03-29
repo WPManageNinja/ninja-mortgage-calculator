@@ -438,7 +438,6 @@ export default {
 					table_id: this.table_id
 				}).then(
 					(response) => {
-						console.log(response)
 						if(response.data.table_config.CalCulatorType) {
 							this.calc_type = response.data.table_config.CalCulatorType;
 						} else {
@@ -535,7 +534,6 @@ export default {
 					calculator_type: this.calc_type
 				}
 				jQuery.post(ajaxurl, updateTableAjaxData).then(response => {
-					console.log(response)
                     this.$notify.success({
                         title: 'Updated',
                         message: response.data.message
@@ -565,7 +563,6 @@ export default {
 			},
 			updateCurrency(currency) {
 				this.currency_type = currency;
-				console.log(this.currency_type)
 			},
             clipboardRender(){
                 var clipboard = new Clipboard('.copy_shortcode');

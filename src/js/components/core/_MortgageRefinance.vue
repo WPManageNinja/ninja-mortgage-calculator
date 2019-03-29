@@ -217,7 +217,7 @@
 
         <!-- All Cost Section -->
         <div class="costs_section">
-            <p><b>New Monthly Pament</b></p>
+            <p><b>New Monthly Payment</b></p>
             <h1><span>{{currencyType}}</span> {{ monthly_payment.toFixed(2) }}</h1>
             <p><b>Monthly Savings</b>: {{currencyType}} {{ monthly_savings.toFixed(2) }}</p>
             <p><b>Difference in Interest</b>: {{currencyType}} {{ diff_in_interest.toFixed(2) }}</p>
