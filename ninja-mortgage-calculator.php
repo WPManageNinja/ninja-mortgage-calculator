@@ -2,7 +2,7 @@
 /*
 Plugin Name: Ninja Mortgage Calculator
 Description: The Best Mortgage Calculator Plugin for WordPress
-Version: 1.0.0
+Version: 1.0.1
 Author: WPManageNinja
 Author URI: https://wpmanageninja.com
 Plugin URI: https://github.com/WPManageNinja/ninja-mortgage-calculator

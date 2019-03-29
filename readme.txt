@@ -85,6 +85,11 @@ Yes, You can.
 7. Calculator Default Value Editor
 
 == Changelog ==
+= 1.0.1 =
+* Fixes spellings
+* Removes development references
+* Cleans up the UI
+
 = 1.0 =
 * Init First version
 
